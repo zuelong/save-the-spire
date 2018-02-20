@@ -1,0 +1,17 @@
+{
+  "relics": [
+    "Burning Blood",
+    "NeowsBlessing"
+  ],
+  "cards": [
+    {
+      "upgrades": 1,
+      "id": "Demon Form"
+    }
+  ],
+  "current_health": 80,
+  "gold": 99,
+  "obtained_cards": {},
+  "hand_size": 5,
+  "max_health": 80
+}

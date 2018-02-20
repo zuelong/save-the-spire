@@ -1,0 +1,320 @@
+{
+  "metric_campfire_meditates": 0,
+  "perfect": 0,
+  "shuffle_seed_count": 0,
+  "metric_build_version": "2018-02-15-PROD1",
+  "metric_purchased_purges": 0,
+  "metric_path_per_floor": [],
+  "event_list": [
+    "Big Fish",
+    "The Cleric",
+    "Dead Adventurer",
+    "Golden Idol",
+    "Golden Wing",
+    "World of Goop",
+    "Liars Game",
+    "Living Wall",
+    "Mushrooms",
+    "Scrap Ooze",
+    "Shining Light"
+  ],
+  "elite_monster_list": [
+    "3 Sentries",
+    "Lagavulin",
+    "Gremlin Nob",
+    "Lagavulin",
+    "3 Sentries"
+  ],
+  "metric_seed_played": "-4124306369467417744",
+  "monster_list": [
+    "Cultist",
+    "Jaw Worm",
+    "Exordium Wildlife",
+    "Gremlin Gang",
+    "Large Slime",
+    "3 Louse",
+    "Blue Slaver",
+    "Exordium Wildlife",
+    "Lots of Slimes",
+    "Large Slime",
+    "Looter",
+    "Exordium Wildlife",
+    "Large Slime",
+    "Exordium Thugs",
+    "Lots of Slimes"
+  ],
+  "red": 3,
+  "elites3_killed": 0,
+  "relic_counters": [
+    -1,
+    2
+  ],
+  "metric_potions_floor_spawned": [],
+  "elites2_killed": 0,
+  "potion_seed_count": 1,
+  "is_ascension_mode": true,
+  "metric_items_purchased": [],
+  "elites1_killed": 0,
+  "combat_rewards": [
+    {
+      "type": "GOLD",
+      "amount": 13,
+      "bonusGold": 0
+    }
+  ],
+  "merchant_seed_count": 0,
+  "overkill": false,
+  "metric_floor_reached": 1,
+  "champions": 0,
+  "floor_num": 1,
+  "spirit_count": 0,
+  "uncommon_relics": [
+    "Toxic Egg 2",
+    "Toolbox",
+    "Darkstone Periapt",
+    "Gremlin Horn",
+    "Mercury Hourglass",
+    "Shuriken",
+    "Smiling Mask",
+    "Matryoshka",
+    "Molten Egg 2",
+    "Pantograph",
+    "Bottled Tornado",
+    "Self Forming Clay",
+    "Meat on the Bone",
+    "Frozen Egg 2",
+    "Ornamental Fan",
+    "Bottled Flame",
+    "Bottled Lightning",
+    "Centennial Puzzle",
+    "Pear",
+    "Blue Candle",
+    "Letter Opener",
+    "Paper Frog",
+    "The Courier",
+    "Dodecahedron",
+    "Mummified Hand",
+    "Kunai"
+  ],
+  "post_combat": true,
+  "combo": false,
+  "relics": [
+    "Burning Blood",
+    "NeowsBlessing"
+  ],
+  "rare_relics": [
+    "Mango",
+    "Magic Flower",
+    "Unceasing Top",
+    "Girya",
+    "Bird Faced Urn",
+    "Champion Belt",
+    "Shovel",
+    "Frozen Eye",
+    "Ice Cream",
+    "Sundial",
+    "Charon's Ashes",
+    "Thread and Needle",
+    "Ginger",
+    "Gambling Chip",
+    "Red Skull",
+    "Dead Branch",
+    "Torii",
+    "Peace Pipe",
+    "Calipers",
+    "Du-Vu Doll",
+    "Old Coin"
+  ],
+  "potion_chance": 10,
+  "level_name": "Exordium",
+  "metric_campfire_rested": 0,
+  "shop_relics": [
+    "Medical Kit",
+    "Membership Card",
+    "Cauldron",
+    "Strange Spoon",
+    "Toy Ornithopter",
+    "Lee's Waffle"
+  ],
+  "metric_path_taken": [
+    "M"
+  ],
+  "name": "Zuelong",
+  "metric_playtime": 15,
+  "metric_max_hp_per_floor": [],
+  "save_date": 1519028605041,
+  "cards": [
+    {
+      "upgrades": 1,
+      "id": "Demon Form"
+    },
+    {
+      "upgrades": 1,
+      "id": "Demon Form"
+    },
+    {
+      "upgrades": 1,
+      "id": "Spot Weakness"
+    },
+    {
+      "upgrades": 1,
+      "id": "Spot Weakness"
+    },
+    {
+      "upgrades": 1,
+      "id": "Spot Weakness"
+    },
+    {
+      "upgrades": 1,
+      "id": "Limit Break"
+    },
+    {
+      "upgrades": 1,
+      "id": "Limit Break"
+    },
+    {
+      "upgrades": 1,
+      "id": "Heavy Blade"
+    },
+    {
+      "upgrades": 1,
+      "id": "Heavy Blade"
+    },
+    {
+      "upgrades": 1,
+      "id": "Heavy Blade"
+    },
+    {
+      "upgrades": 1,
+      "id": "Heavy Blade"
+    },
+    {
+      "upgrades": 1,
+      "id": "Whirlwind"
+    }
+  ],
+  "boss": "Slime Boss",
+  "seed": -4124306369467417600,
+  "metric_items_purged": [],
+  "metric_current_hp_per_floor": [],
+  "current_health": 80,
+  "purgeCost": 75,
+  "common_relics": [
+    "Singing Bowl",
+    "Whetstone",
+    "Ancient Tea Set",
+    "Anchor",
+    "Lantern",
+    "Orichalcum",
+    "War Paint",
+    "Strawberry",
+    "Bag of Preparation",
+    "Art of War",
+    "Vajra",
+    "Prayer Wheel",
+    "Tiny Chest",
+    "Blood Vial",
+    "Pen Nib",
+    "Bag of Marbles",
+    "Juzu Bracelet",
+    "Oddly Smooth Stone",
+    "Regal Pillow",
+    "Bronze Scales",
+    "Happy Flower",
+    "Omamori",
+    "Dream Catcher"
+  ],
+  "room_x": 1,
+  "room_y": 0,
+  "monsters_killed": 1,
+  "metric_gold_per_floor": [],
+  "gold": 99,
+  "metric_potions_floor_usage": [],
+  "card_random_seed_count": 0,
+  "card_seed_count": 0,
+  "boss_list": [
+    "Slime Boss",
+    "Hexaghost",
+    "The Guardian"
+  ],
+  "metric_campfire_rituals": 0,
+  "ai_seed_count": 0,
+  "event_chances": [
+    0,
+    0.1,
+    0.03,
+    0.02
+  ],
+  "metric_card_choices": [],
+  "metric_boss_relics": [],
+  "relic_seed_count": 5,
+  "metric_damage_taken": [
+    {
+      "damage": 0,
+      "enemies": "2 Louse",
+      "floor": 1,
+      "turns": 1
+    }
+  ],
+  "green": 0,
+  "mystery_machine": 0,
+  "metric_campfire_upgraded": 0,
+  "treasure_seed_count": 0,
+  "chose_neow_reward": false,
+  "event_seed_count": 0,
+  "metric_event_choices": [],
+  "obtained_cards": {},
+  "current_room": "com.megacrit.cardcrawl.rooms.MonsterRoom",
+  "play_time": 15,
+  "hand_size": 5,
+  "boss_relics": [
+    "Runic Cube",
+    "Calling Bell",
+    "Philosopher's Stone",
+    "Sozu",
+    "Tiny House",
+    "Lizard Tail",
+    "Runic Dome",
+    "Snecko Eye",
+    "Eternal Feather",
+    "Astrolabe",
+    "Black Star",
+    "Orrery",
+    "Cursed Key",
+    "Mark of Pain",
+    "Black Blood",
+    "Velvet Choker",
+    "Runic Pyramid",
+    "Ectoplasm",
+    "Pandora's Box",
+    "White Beast Statue",
+    "Question Card"
+  ],
+  "max_health": 80,
+  "monster_seed_count": 26,
+  "blue": 0,
+  "path_y": [
+    0
+  ],
+  "path_x": [
+    1
+  ],
+  "gold_gained": 0,
+  "potions": [
+    "Potion Slot",
+    "Potion Slot",
+    "Potion Slot"
+  ],
+  "ascension_level": 1,
+  "one_time_event_list": [
+    "Accursed Blacksmith",
+    "Bonfire Elementals",
+    "Fountain of Cleansing",
+    "Duplicator",
+    "Knowing Skull",
+    "Lab",
+    "N'loth",
+    "The Joust",
+    "The Woman in Blue"
+  ]
+}
