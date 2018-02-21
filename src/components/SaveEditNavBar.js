@@ -11,10 +11,11 @@ class SaveEditNavBar extends Component{
             navbar: {
                 display: 'grid',
                 gridTemplateColumns: '50% 50%',
-                backgroundColor: '#E8E8E8',
-                height: '8vh',
+                backgroundColor: '#3e383a',
+                height: '60px',
                 alignItems: 'center',
                 justifyContent: 'center',
+                color: 'white'
             },
         };
 

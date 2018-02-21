@@ -15,11 +15,11 @@ const reducer = (state, action) => {
             ...state,
             Cards: {
                 selected: true,
-                color: '#D8D8D8'
+                color: '#2e282a'
             },
             Relics: {
                 selected: false,
-                color: '#E8E8E8'
+                color: '#3e383a'
             }
         };
     }
@@ -28,11 +28,11 @@ const reducer = (state, action) => {
             ...state,
             Cards: {
                 selected: false,
-                color: '#E8E8E8'
+                color: '#3e383a'
             },
             Relics: {
                 selected: true,
-                color: '#D8D8D8'
+                color: '#2e282a'
             }
         };
     }
@@ -41,11 +41,11 @@ const reducer = (state, action) => {
             ...state,
             Basic: {
                 selected: true,
-                color: '#D8D8D8'
+                color: '#2e282a'
             },
             Advanced: {
                 selected: false,
-                color: '#E8E8E8'
+                color: '#3e383a'
             }
         };
     }
@@ -54,11 +54,11 @@ const reducer = (state, action) => {
             ...state,
             Basic: {
                 selected: false,
-                color: '#E8E8E8'
+                color: '#3e383a'
             },
             Advanced: {
                 selected: true,
-                color: '#D8D8D8'
+                color: '#2e282a'
             }
         };
     }
@@ -74,19 +74,19 @@ const reducer = (state, action) => {
 const initialState = {
     Cards: {
         selected: true,
-        color: '#D8D8D8'
+        color: '#2e282a'
     },
     Relics: {
         selected: false,
-        color: '#E8E8E8'
+        color: '#3e383a'
     },
     Basic: {
         selected: true,
-        color: '#D8D8D8'
+        color: '#2e282a'
     },
     Advanced: {
         selected: false,
-        color: '#E8E8E8'
+        color: '#3e383a'
     }
 };
 

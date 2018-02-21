@@ -27,7 +27,7 @@ class SaveEditNavItem extends Component {
     toggleHover = () => {
         if(!this.props.store.getState()[this.props.name]['selected']) {
             this.setState({hover: !this.state.hover});
-            this.state.hover ? this.setState({color: '#E8E8E8'}) : this.setState({color: '#D8D8D8'});
+            this.state.hover ? this.setState({color: '#3e383a'}) : this.setState({color: '#2e282a'});
         }
     };
 

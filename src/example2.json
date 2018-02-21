@@ -10,12 +10,15 @@
     },
     {
       "upgrades": 1,
+      "id": "Spot Weakness"
+    },
+    {
+      "upgrades": 1,
       "id": "Heavy Blade"
     },
-  ],
-  "current_health": 80,
-  "gold": 99,
-  "obtained_cards": {},
-  "hand_size": 5,
-  "max_health": 80
+    {
+      "upgrades": 1,
+      "id": "Heavy Blade"
+    }
+  ]
 }

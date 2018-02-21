@@ -1,20 +1,28 @@
 import React, { Component } from 'react';
 import '../App.css';
 import NavBar from "./ItemNavBar";
+import ReactDOM from "react-dom";
+import CardSelector from "./CardSelector";
 
 
 
 class ItemList extends Component {
 
+    componentDidMount(){
+        ReactDOM.render(<CardSelector store={this.props.store}/>, document.getElementById('item-content'));
+    }
+
     render() {
 
         const styles = {
             cardlist: {
-                gridColumn: "2",
+                height: '100vh',
+                width: '50vw',
+                overflowX: 'hidden'
             },
             content: {
-                overflowY: 'scroll',
-                height: "90vh"
+                height: 'calc(100vh - 60px)',
+                boxSizing: 'border-box'
             },
         };
 

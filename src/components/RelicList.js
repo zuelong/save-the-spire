@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 
-class CardList extends Component {
+class RelicList extends Component {
 
     handleChange = () =>{
 
@@ -35,4 +35,4 @@ class CardList extends Component {
     }
 }
 
-export default CardList;
+export default RelicList;
