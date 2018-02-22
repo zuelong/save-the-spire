@@ -3,8 +3,16 @@ import '../App.css';
 
 class CardList extends Component {
 
-    handleChange = () =>{
+    state = {selected_cards: [], card_names: []};
 
+    handleChange = () =>{
+        this.setState({selected_cards: this.props.store.getState()['data']['cards']});
+        this.setState({card_names: []});
+        let tmp_list = [];
+        for(let card of this.state.selected_cards){
+            tmp_list.push(card.id);
+        }
+        this.setState({card_names: tmp_list});
     };
 
     componentDidMount(){
@@ -16,6 +24,7 @@ class CardList extends Component {
         const styles = {
             basic: {
                 gridColumn: "1",
+                gridRow: '2'
             },
             textarea: {
                 height: "45vh",
@@ -28,7 +37,9 @@ class CardList extends Component {
 
         return (
             <div style={styles.basic}>
-
+                <label>Cards:</label>
+                <br />
+                {this.state.card_names}
             </div>
 
         );

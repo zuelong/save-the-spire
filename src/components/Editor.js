@@ -11,7 +11,7 @@ class Editor extends Component {
         const styles = {
             editor: {
                 gridColumn: "1",
-                gridRow: "3",
+                gridRow: "2",
                 display: "grid"
             },
             textarea: {

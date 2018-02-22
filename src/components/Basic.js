@@ -10,6 +10,7 @@ class Basic extends Component {
         const styles = {
             basic: {
                 gridColumn: "1",
+                display: 'grid'
             },
             textarea: {
                 height: "45vh",

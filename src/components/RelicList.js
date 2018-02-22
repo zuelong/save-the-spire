@@ -3,8 +3,16 @@ import '../App.css';
 
 class RelicList extends Component {
 
-    handleChange = () =>{
+    state = {selected_relics: [], relic_names: []};
 
+    handleChange = () =>{
+        this.setState({selected_relics: this.props.store.getState()['data']['relics']});
+        this.setState({relic_names: []});
+        let tmp_list = [];
+        for(let relic of this.state.selected_relics){
+            tmp_list.push(relic);
+        }
+        this.setState({relic_names: tmp_list});
     };
 
     componentDidMount(){
@@ -16,6 +24,7 @@ class RelicList extends Component {
         const styles = {
             basic: {
                 gridColumn: "1",
+                gridRow: '3'
             },
             textarea: {
                 height: "45vh",
@@ -28,7 +37,9 @@ class RelicList extends Component {
 
         return (
             <div style={styles.basic}>
-
+                <label>Relics:</label>
+                <br />
+                {this.state.relic_names}
             </div>
 
         );
