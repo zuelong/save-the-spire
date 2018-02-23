@@ -1,6 +1,6 @@
-#Welcome to the new Basic configuration mode
+# Welcome to the new Basic configuration mode
 
-###What's changed?
+### What's changed?
 
 - You can now drag and drop a save file into the file dropper to load in the data
 - Cards and Relics can be added to your save file by clicking them in the selectors on the right side of the screen
