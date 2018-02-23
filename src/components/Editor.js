@@ -43,6 +43,12 @@ class Editor extends Component {
                 <CardList store={this.props.store}/>
                 <RelicList store={this.props.store}/>
                 <button onClick={this.renderConverter}>Generate Save File</button>
+                <p>
+                    Welcome to the new Basic option for the save editor!  To learn how to use it: <a href="https://github.com/zuelong/save-the-spire/blob/master/Basic.md">click here!</a>
+                    <br/>
+                    <br/>
+                    Otherwise, you can click "Advanced" on the top of the screen to use the old version of the save editor!
+                </p>
             </div>
 
         );
