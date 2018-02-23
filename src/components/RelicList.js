@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
-import '../App.css';
+import Relic from "./Relic";
 
 class RelicList extends Component {
 
     state = {selected_relics: [], relic_names: []};
 
     handleChange = () =>{
-        this.setState({selected_relics: this.props.store.getState()['data']['relics']});
+        const tmp_relics = this.props.store.getState()['data']['relics'];
+        this.setState({selected_relics: tmp_relics});
         this.setState({relic_names: []});
         let tmp_list = [];
-        for(let relic of this.state.selected_relics){
-            tmp_list.push(relic);
+        let i = 1;
+        for(let relics of tmp_relics){
+            tmp_list.push(<Relic store={this.props.store} number={i - 1} name={relics} grid={i}/>);
+            i++;
         }
         this.setState({relic_names: tmp_list});
     };
@@ -22,24 +25,27 @@ class RelicList extends Component {
     render() {
 
         const styles = {
-            basic: {
+            reliclist: {
                 gridColumn: "1",
-                gridRow: '3'
-            },
-            textarea: {
-                height: "45vh",
-                width: "99%"
-            },
-            fileupload: {
-                gridColumn: "1",
+                gridRow: '3',
+                display: 'grid',
+                gridTemplateColumns: '20% 20% 20% 20% 20%',
+                gridAutoRows: '40px',
+                overflowY: 'scroll',
+                overflowX: 'hidden',
+                minHeight: '40px',
+                maxHeight: '240px',
+                marginBottom: '20px',
+                boxSizing: 'border-box'
             }
         };
 
         return (
-            <div style={styles.basic}>
+            <div>
                 <label>Relics:</label>
-                <br />
-                {this.state.relic_names}
+                <div style={styles.reliclist}>
+                    {this.state.relic_names}
+                </div>
             </div>
 
         );

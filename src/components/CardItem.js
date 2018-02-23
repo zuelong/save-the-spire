@@ -1,28 +1,45 @@
-import React, {Component} from "react";
+import React, {PureComponent} from "react";
+import { types } from "../utils/ReduxStore"
 
-class CardItem extends Component {
+class CardItem extends PureComponent {
+
+    state = {hover: false, color: '#27cecb'};
+
+    toggleHover = () => {
+        let hover = !this.state.hover;
+        this.setState({hover: hover});
+        hover ? this.setState({color: '#17bebb'}) : this.setState({color: '#27cecb'});
+    };
+
+    addCard = () => {
+        let data = this.props.store.getState()['data'];
+        let cards = data.cards;
+        data.cards = [...cards, {upgrades: 0, id: this.props.value}];
+        this.props.store.dispatch({type: types.UPDATE_JSON, payload: data});
+    };
 
     render() {
 
         const styles = {
             carditem: {
-                grid: this.props.grid,
+                textAlign: 'center',
                 minHeight: '40px',
                 display: 'flex',
                 alignItems: 'center',
-                backgroundColor: '#27cecb',
-                border: '1px solid #17bebb'
+                justifyContent: 'center',
+                backgroundColor: this.state.color,
+                border: '1px solid #17bebb',
+                cursor: 'default',
             },
-            span: {
-                flex: 'none',
-                textAlign: 'center',
-                width: '100%'
+            a: {
+                width: '100%',
+                cursor: 'default',
             }
         };
 
         return (
-            <div style={styles.carditem}>
-                <span style={styles.span}>{this.props.value}</span>
+            <div onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover} onClick={this.addCard} style={styles.carditem}>
+                {this.props.value}
             </div>
         );
     }

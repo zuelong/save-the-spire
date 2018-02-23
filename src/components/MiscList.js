@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../App.css';
 
 class MiscList extends Component {
 
@@ -22,27 +21,22 @@ class MiscList extends Component {
     render() {
 
         const styles = {
-            basic: {
+            misc: {
                 gridRow: "1",
-            },
-            textarea: {
-                height: "45vh",
-                width: "99%"
-            },
-            fileupload: {
-                gridColumn: "1",
+                display: "grid",
+                gridTemplateColumns: "min-content 50px",
+                whiteSpace: 'nowrap',
+                marginBottom: "20px",
+                boxSizing: 'border-box'
             }
         };
 
         return (
-            <div style={styles.basic}>
-                <label>Current Health: </label><input type="text" value={this.state.hp}/>
-                <br />
-                <label>Max Health: </label><input type="text" value={this.state.max_hp}/>
-                <br />
-                <label>Gold: </label><input type="text" value={this.state.gold}/>
-                <br />
-                <label>Hand Size: </label><input type="text" value={this.state.hand_size}/>
+            <div style={styles.misc}>
+                <label>Current Health: </label><input id="hp" type="number" placeholder={this.state.hp}/>
+                <label>Max Health: </label><input id="max_hp" type="number" placeholder={this.state.max_hp}/>
+                <label>Gold: </label><input id="gold" type="number" placeholder={this.state.gold}/>
+                <label>Hand Size: </label><input id="hand_size" type="number" placeholder={this.state.hand_size}/>
             </div>
 
         );

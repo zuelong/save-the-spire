@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import relics from "./Relics";
+import relics from "./RelicsJSON";
 import RelicItem from "./RelicItem";
 
 class RelicSelector extends Component {
@@ -21,7 +21,7 @@ class RelicSelector extends Component {
 
         for(let i = 1; i < relics_keys.length; i++) {
             relicsList.push(
-                <RelicItem grid={i} value={relics_keys[i]} />
+                <RelicItem store={this.props.store} grid={i} value={relics_keys[i]} />
             )}
 
         return (

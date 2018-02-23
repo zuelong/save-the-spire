@@ -47,7 +47,6 @@ class FileUpload extends Component {
         reader.readAsText(f);
     };
 
-
     //TODO: Clean up logic and make use of React states/props
     handleFileSelect = (evt) => {
         evt.stopPropagation();
@@ -99,7 +98,7 @@ class FileUpload extends Component {
 
         return (
             <div style={styles.fileupload}>
-                <div id="drop_zone" onDragOver={this.handleDragOver} onDrop={this.handleFileSelect} style={styles.dropzone}>Drop files here</div>
+                <div id="drop_zone" onDragOver={this.handleDragOver} onDrop={this.handleFileSelect} style={styles.dropzone}>Drop file here</div>
                 <output id="list"></output>
             </div>
 

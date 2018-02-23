@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Editor from './Editor'
 import FileUpload from './FileUpload'
-import '../App.css';
 
 class Basic extends Component {
 

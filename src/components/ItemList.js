@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../App.css';
 import NavBar from "./ItemNavBar";
 import ReactDOM from "react-dom";
 import CardSelector from "./CardSelector";

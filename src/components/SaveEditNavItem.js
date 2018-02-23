@@ -12,7 +12,7 @@ class SaveEditNavItem extends Component {
             border: '1px solid'
         },
         Advanced:{
-            border: 'none'
+            border: '1px solid'
         }
     };
 

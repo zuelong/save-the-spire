@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
-import '../App.css';
+import Card from "./Card";
 
 class CardList extends Component {
 
     state = {selected_cards: [], card_names: []};
 
     handleChange = () =>{
-        this.setState({selected_cards: this.props.store.getState()['data']['cards']});
+        const tmp_cards = this.props.store.getState()['data']['cards'];
+        this.setState({selected_cards: tmp_cards});
         this.setState({card_names: []});
         let tmp_list = [];
-        for(let card of this.state.selected_cards){
-            tmp_list.push(card.id);
+        let i = 1;
+        for(let card of tmp_cards){
+            tmp_list.push(<Card store={this.props.store} name={card.id} number={i - 1} grid={i}/>);
+            i++;
         }
         this.setState({card_names: tmp_list});
     };
@@ -22,24 +25,26 @@ class CardList extends Component {
     render() {
 
         const styles = {
-            basic: {
+            cardlist: {
                 gridColumn: "1",
-                gridRow: '2'
-            },
-            textarea: {
-                height: "45vh",
-                width: "99%"
-            },
-            fileupload: {
-                gridColumn: "1",
+                gridRow: '2',
+                display: 'grid',
+                gridTemplateColumns: '20% 20% 20% 20% 20%',
+                gridAutoRows: '40px',
+                overflowY: 'scroll',
+                minHeight: '40px',
+                maxHeight: '240px',
+                marginBottom: '20px',
+                boxSizing: 'border-box'
             }
         };
 
         return (
-            <div style={styles.basic}>
+            <div>
                 <label>Cards:</label>
-                <br />
-                {this.state.card_names}
+                <div style={styles.cardlist}>
+                    {this.state.card_names}
+                </div>
             </div>
 
         );

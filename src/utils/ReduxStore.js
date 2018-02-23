@@ -6,7 +6,8 @@ const types = {
     SELECT_RELICS: 'RELICS',
     SELECT_BASIC: 'BASIC',
     SELECT_ADVANCED: 'ADVANCED',
-    UPDATE_JSON: 'UPDATE JSON'
+    UPDATE_JSON: 'UPDATE JSON',
+    ADD_CARD: 'ADD CARD',
 };
 
 const reducer = (state, action) => {
@@ -87,6 +88,14 @@ const initialState = {
     Advanced: {
         selected: false,
         color: '#3e383a'
+    },
+    data: {
+        current_health: 80,
+        max_health: 80,
+        gold: 99,
+        hand_size: 5,
+        cards: [],
+        relics: []
     }
 };
 

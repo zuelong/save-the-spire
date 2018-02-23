@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import cards from "./Cards";
+import cards from "./CardsJSON";
 import CardItem from "./CardItem";
 
 class CardSelector extends Component {
@@ -21,7 +21,7 @@ class CardSelector extends Component {
 
         for(let i = 1; i < cards_keys.length; i++) {
             cardsList.push(
-                <CardItem grid={i} value={cards_keys[i]} />
+                <CardItem store={this.props.store} grid={i} value={cards_keys[i]} />
             )}
 
         return (
