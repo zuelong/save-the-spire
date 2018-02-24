@@ -150,47 +150,15 @@
     },
     {
       "upgrades": 1,
-      "id": "Demon Form"
-    },
-    {
-      "upgrades": 1,
       "id": "Spot Weakness"
     },
     {
       "upgrades": 1,
-      "id": "Spot Weakness"
-    },
-    {
-      "upgrades": 1,
-      "id": "Spot Weakness"
-    },
-    {
-      "upgrades": 1,
-      "id": "Limit Break"
-    },
-    {
-      "upgrades": 1,
-      "id": "Limit Break"
-    },
-    {
-      "upgrades": 1,
       "id": "Heavy Blade"
     },
     {
       "upgrades": 1,
       "id": "Heavy Blade"
-    },
-    {
-      "upgrades": 1,
-      "id": "Heavy Blade"
-    },
-    {
-      "upgrades": 1,
-      "id": "Heavy Blade"
-    },
-    {
-      "upgrades": 1,
-      "id": "Whirlwind"
     }
   ],
   "boss": "Slime Boss",

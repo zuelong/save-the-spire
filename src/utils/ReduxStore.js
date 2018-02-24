@@ -6,7 +6,9 @@ const types = {
     SELECT_RELICS: 'RELICS',
     SELECT_BASIC: 'BASIC',
     SELECT_ADVANCED: 'ADVANCED',
-    UPDATE_JSON: 'UPDATE JSON'
+    UPDATE_JSON: 'UPDATE JSON',
+    ADD_CARD: 'ADD CARD',
+    UPDATE_CHECKBOX: 'UPDATE CHECKBOX'
 };
 
 const reducer = (state, action) => {
@@ -15,11 +17,11 @@ const reducer = (state, action) => {
             ...state,
             Cards: {
                 selected: true,
-                color: '#D8D8D8'
+                color: '#2e282a'
             },
             Relics: {
                 selected: false,
-                color: '#E8E8E8'
+                color: '#3e383a'
             }
         };
     }
@@ -28,11 +30,11 @@ const reducer = (state, action) => {
             ...state,
             Cards: {
                 selected: false,
-                color: '#E8E8E8'
+                color: '#3e383a'
             },
             Relics: {
                 selected: true,
-                color: '#D8D8D8'
+                color: '#2e282a'
             }
         };
     }
@@ -41,11 +43,11 @@ const reducer = (state, action) => {
             ...state,
             Basic: {
                 selected: true,
-                color: '#D8D8D8'
+                color: '#2e282a'
             },
             Advanced: {
                 selected: false,
-                color: '#E8E8E8'
+                color: '#3e383a'
             }
         };
     }
@@ -54,11 +56,11 @@ const reducer = (state, action) => {
             ...state,
             Basic: {
                 selected: false,
-                color: '#E8E8E8'
+                color: '#3e383a'
             },
             Advanced: {
                 selected: true,
-                color: '#D8D8D8'
+                color: '#2e282a'
             }
         };
     }
@@ -68,26 +70,41 @@ const reducer = (state, action) => {
             data: action.payload
         };
     }
+    else if (action.type === types.UPDATE_CHECKBOX){
+        return {
+            ...state,
+            checkbox: action.payload
+        };
+    }
     return state
 };
 
 const initialState = {
     Cards: {
         selected: true,
-        color: '#D8D8D8'
+        color: '#2e282a'
     },
     Relics: {
         selected: false,
-        color: '#E8E8E8'
+        color: '#3e383a'
     },
     Basic: {
         selected: true,
-        color: '#D8D8D8'
+        color: '#2e282a'
     },
     Advanced: {
         selected: false,
-        color: '#E8E8E8'
-    }
+        color: '#3e383a'
+    },
+    data: {
+        current_health: 80,
+        max_health: 80,
+        gold: 99,
+        hand_size: 5,
+        cards: [],
+        relics: []
+    },
+    upgraded: false
 };
 
 const store = createStore(reducer, initialState);

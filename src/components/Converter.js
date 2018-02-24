@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
+import ReactDOM from "react-dom";
+import Basic from "./Basic";
 
-class Advanced extends Component {
+class Converter extends Component {
+
+    renderEditor = () => {
+        ReactDOM.render(<Basic store={this.props.store} />, document.getElementById('save-edit-content'));
+    };
 
     convertToByteArray = (data) => {
         let byte_array = [];
@@ -35,22 +41,14 @@ class Advanced extends Component {
         }
     };
 
-    encrypt = () => {
+    encrypt = (data) => {
         try {
-            const decrypted = JSON.stringify(JSON.parse(document.getElementById("text2").value));
+            const decrypted = JSON.stringify(data);
             let encrypted = btoa(this.xorWithKey(decrypted, "key"));
-            document.getElementById("text1").value = encrypted;
+            return encrypted;
         }
         catch(e){
             alert('Invalid JSON')
-        }
-    };
-
-    componentDidMount = () => {
-      let data = this.props.store.getState()['data'];
-        if(data.seed !== undefined) {
-            document.getElementById('text2').value = JSON.stringify(data, null, 2);
-            this.encrypt();
         }
     };
 
@@ -68,15 +66,13 @@ class Advanced extends Component {
 
         return (
             <div style={styles.textbox}>
-                <textarea placeholder="Enter Base64 Here" id="text1" style={styles.textarea}/>
+                <textarea id="text1" style={styles.textarea} value={this.encrypt(this.props.store.getState()['data'])}/>
                 <br />
-                <button onClick={this.decrypt}>to JSON</button>
-                <button onClick={this.encrypt}>to Base64</button>
-                <br />
-                <textarea placeholder="Enter JSON Here" id="text2" style={styles.textarea}/>
+                <button onClick={this.renderEditor}>Back</button>
             </div>
+
         );
     }
 }
 
-export default Advanced;
+export default Converter;
