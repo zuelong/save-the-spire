@@ -3,7 +3,16 @@ import { types } from "../utils/ReduxStore"
 
 class CardItem extends PureComponent {
 
-    state = {hover: false, color: '#27cecb'};
+    state = {hover: false, color: '#27cecb', upgraded: 0, plus: ''};
+
+    handleChange = () => {
+      if(this.props.store.getState().checkbox){
+          this.setState({upgraded: 1, plus: '+'})
+      }
+      else{
+          this.setState({upgraded: 0, plus: ''})
+      }
+    };
 
     toggleHover = () => {
         let hover = !this.state.hover;
@@ -13,9 +22,13 @@ class CardItem extends PureComponent {
 
     addCard = () => {
         let data = this.props.store.getState()['data'];
-        let cards = data.cards;
-        data.cards = [...cards, {upgrades: 0, id: this.props.value}];
+        data.cards.push({upgrades: this.state.upgraded, id: this.props.value});
         this.props.store.dispatch({type: types.UPDATE_JSON, payload: data});
+    };
+
+    componentDidMount = () => {
+        this.props.store.subscribe(this.handleChange);
+        this.handleChange();
     };
 
     render() {
@@ -39,7 +52,7 @@ class CardItem extends PureComponent {
 
         return (
             <div onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover} onClick={this.addCard} style={styles.carditem}>
-                {this.props.value}
+                {this.props.value + this.state.plus}
             </div>
         );
     }

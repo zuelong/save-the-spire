@@ -1,8 +1,17 @@
 import React, {Component} from "react";
 import cards from "./CardsJSON";
 import CardItem from "./CardItem";
+import { types } from "../utils/ReduxStore"
 
 class CardSelector extends Component {
+
+    componentDidMount = () => {
+        document.getElementById('upgraded').checked = this.props.store.getState()['checkbox']
+    };
+
+    updateCheckbox = () => {
+      this.props.store.dispatch({type: types.UPDATE_CHECKBOX, payload: document.getElementById('upgraded').checked})
+    };
 
     render() {
 
@@ -11,8 +20,17 @@ class CardSelector extends Component {
               display: 'grid',
               boxSizing: 'border-box',
               overflowY: 'scroll',
-              height: 'calc(100vh - 60px)',
-          }
+              height: 'calc(100vh - 60px - 1.5rem)',
+          },
+            upgrade: {
+                height: '1.5rem',
+                backgroundColor: '#d8d8d8',
+                border: '1px solid',
+                boxSizing: 'border-box',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+            }
         };
 
         let cards_keys = Object.keys(cards).sort();
@@ -25,8 +43,13 @@ class CardSelector extends Component {
             )}
 
         return (
-            <div style={styles.cards}>
-                {cardsList}
+            <div>
+                <div style={styles.upgrade}>
+                    <input onClick={this.updateCheckbox} id="upgraded" type='checkbox' /><label>upgraded</label>
+                </div>
+                <div style={styles.cards}>
+                    {cardsList}
+                </div>
             </div>
         );
     }

@@ -8,6 +8,7 @@ const types = {
     SELECT_ADVANCED: 'ADVANCED',
     UPDATE_JSON: 'UPDATE JSON',
     ADD_CARD: 'ADD CARD',
+    UPDATE_CHECKBOX: 'UPDATE CHECKBOX'
 };
 
 const reducer = (state, action) => {
@@ -69,6 +70,12 @@ const reducer = (state, action) => {
             data: action.payload
         };
     }
+    else if (action.type === types.UPDATE_CHECKBOX){
+        return {
+            ...state,
+            checkbox: action.payload
+        };
+    }
     return state
 };
 
@@ -96,7 +103,8 @@ const initialState = {
         hand_size: 5,
         cards: [],
         relics: []
-    }
+    },
+    upgraded: false
 };
 
 const store = createStore(reducer, initialState);

@@ -19,7 +19,8 @@ class RelicList extends Component {
     };
 
     componentDidMount(){
-        this.props.store.subscribe(this.handleChange)
+        this.props.store.subscribe(this.handleChange);
+        this.handleChange();
     }
 
     render() {

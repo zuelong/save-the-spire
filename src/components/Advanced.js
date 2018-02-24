@@ -46,6 +46,14 @@ class Advanced extends Component {
         }
     };
 
+    componentDidMount = () => {
+      let data = this.props.store.getState()['data'];
+        if(data.seed !== undefined) {
+            document.getElementById('text2').value = JSON.stringify(data, null, 2);
+            this.encrypt();
+        }
+    };
+
     render() {
 
         const styles = {
@@ -67,7 +75,6 @@ class Advanced extends Component {
                 <br />
                 <textarea placeholder="Enter JSON Here" id="text2" style={styles.textarea}/>
             </div>
-
         );
     }
 }

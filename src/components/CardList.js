@@ -12,14 +12,17 @@ class CardList extends Component {
         let tmp_list = [];
         let i = 1;
         for(let card of tmp_cards){
-            tmp_list.push(<Card store={this.props.store} name={card.id} number={i - 1} grid={i}/>);
+            let plus = '';
+            card.upgrades ? plus = '+' : plus = '';
+            tmp_list.push(<Card store={this.props.store} name={card.id + plus} number={i - 1} grid={i}/>);
             i++;
         }
         this.setState({card_names: tmp_list});
     };
 
     componentDidMount(){
-        this.props.store.subscribe(this.handleChange)
+        this.props.store.subscribe(this.handleChange);
+        this.handleChange()
     }
 
     render() {
