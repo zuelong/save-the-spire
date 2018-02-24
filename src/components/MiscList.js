@@ -5,10 +5,12 @@ class MiscList extends Component {
 
     handleChange = () =>{
         let data = this.props.store.getState()['data'];
-        document.getElementById('hp').value = data.current_health;
-        document.getElementById('max_hp').value = data.max_health;
-        document.getElementById('gold').value = data.gold;
-        document.getElementById('hand_size').value = data.hand_size;
+        if(document.getElementById('hp') !== null) {
+            document.getElementById('hp').value = data.current_health;
+            document.getElementById('max_hp').value = data.max_health;
+            document.getElementById('gold').value = data.gold;
+            document.getElementById('hand_size').value = data.hand_size;
+        }
     };
 
     updateValues = () => {
@@ -26,7 +28,7 @@ class MiscList extends Component {
     }
 
     componentWillUnmount() {
-        this.props.store.unsubscribe();
+        this.props.store.subscribe(() => {});
     };
 
     render() {
