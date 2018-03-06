@@ -19,7 +19,7 @@ class RelicSelector extends Component {
 
         let relicsList = [];
 
-        for(let i = 1; i < relics_keys.length; i++) {
+        for(let i = 0; i < relics_keys.length; i++) {
             relicsList.push(
                 <RelicItem store={this.props.store} grid={i} value={relics_keys[i]} />
             )}
