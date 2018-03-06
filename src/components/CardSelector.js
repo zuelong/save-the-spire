@@ -37,7 +37,7 @@ class CardSelector extends Component {
 
         let cardsList = [];
 
-        for(let i = 1; i < cards_keys.length; i++) {
+        for(let i = 0; i < cards_keys.length; i++) {
             cardsList.push(
                 <CardItem store={this.props.store} grid={i} value={cards_keys[i]} />
             )}
