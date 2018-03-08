@@ -8,7 +8,8 @@ const types = {
     SELECT_ADVANCED: 'ADVANCED',
     UPDATE_JSON: 'UPDATE JSON',
     ADD_CARD: 'ADD CARD',
-    UPDATE_CHECKBOX: 'UPDATE CHECKBOX'
+    UPDATE_CHECKBOX: 'UPDATE CHECKBOX',
+    UPDATE_SEARCH: 'UPDATE SEARCH'
 };
 
 const reducer = (state, action) => {
@@ -75,6 +76,11 @@ const reducer = (state, action) => {
             ...state,
             checkbox: action.payload
         };
+    } else if (action.type === types.UPDATE_SEARCH) {
+        return {
+            ...state,
+            searchTerm: action.payload
+        };
     }
     return state
 };
@@ -104,6 +110,7 @@ const initialState = {
         cards: [],
         relics: []
     },
+    searchTerm: '',
     upgraded: false
 };
 
