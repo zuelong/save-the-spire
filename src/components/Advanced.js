@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class Advanced extends Component {
+
+    state = {
+        base64: '',
+        json: '',
+    }
 
     convertToByteArray = (data) => {
         let byte_array = [];
@@ -26,9 +32,9 @@ class Advanced extends Component {
 
     decrypt = () => {
         try {
-            const encrypted = document.getElementById("text1").value;
+            const encrypted = this.state.base64;
             let decrypted = this.xorWithKey(atob(encrypted), "key");
-            document.getElementById("text2").value = JSON.stringify(JSON.parse(decrypted), null, 2);
+            this.setState({json: JSON.stringify(JSON.parse(decrypted), null, 2)});
         }
         catch(e) {
             alert('Invalid Base64')
@@ -37,22 +43,38 @@ class Advanced extends Component {
 
     encrypt = () => {
         try {
-            const decrypted = JSON.stringify(JSON.parse(document.getElementById("text2").value));
+            const decrypted = this.state.json;
             let encrypted = btoa(this.xorWithKey(decrypted, "key"));
-            document.getElementById("text1").value = encrypted;
+            this.setState({base64: encrypted})
         }
         catch(e){
             alert('Invalid JSON')
         }
     };
 
-    componentDidMount = () => {
-      let data = this.props.store.getState()['data'];
-        if(data.seed !== undefined) {
-            document.getElementById('text2').value = JSON.stringify(data, null, 2);
-            this.encrypt();
+    componentDidMount() {
+        this.receiveData(this.props.data);
+    }
+
+    componentWillUpdate(nextProps) {
+        if (nextProps.data !== this.props.data) {
+            this.receiveData(nextProps.data);
         }
-    };
+    }
+
+    receiveData(data) {
+        const json = JSON.stringify(data, null, 2);
+        const base64 = btoa(this.xorWithKey(json, "key"))
+        this.setState({json, base64});
+    }
+
+    handleBase64Change = (event) => {
+        this.setState({base64: event.target.value});
+    }
+
+    handleJsonChange = (event) => {
+        this.setState({json: event.target.value});
+    }
 
     render() {
 
@@ -68,15 +90,19 @@ class Advanced extends Component {
 
         return (
             <div style={styles.textbox}>
-                <textarea placeholder="Enter Base64 Here" id="text1" style={styles.textarea}/>
+                <textarea placeholder="Enter Base64 Here" style={styles.textarea} value={this.state.base64} onChange={this.handleBase64Change}/>
                 <br />
                 <button onClick={this.decrypt}>to JSON</button>
                 <button onClick={this.encrypt}>to Base64</button>
                 <br />
-                <textarea placeholder="Enter JSON Here" id="text2" style={styles.textarea}/>
+                <textarea placeholder="Enter JSON Here" style={styles.textarea} value={this.state.json} onChange={this.handleJsonChange}/>
             </div>
         );
     }
 }
 
-export default Advanced;
+const mapStateToProps = (state) => ({ 
+    data: state.data 
+});
+
+export default connect(mapStateToProps)(Advanced);

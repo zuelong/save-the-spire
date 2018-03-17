@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import ReactDOM from "react-dom";
-import Basic from "./Basic";
+import { connect } from 'react-redux';
+import { actions } from '../utils/ReduxStore'
+import { bindActionCreators } from 'redux';
 
 class Converter extends Component {
-
-    renderEditor = () => {
-        ReactDOM.render(<Basic store={this.props.store} />, document.getElementById('save-edit-content'));
-    };
-
     convertToByteArray = (data) => {
         let byte_array = [];
 
@@ -28,17 +24,6 @@ class Converter extends Component {
         }
 
         return out.join('');
-    };
-
-    decrypt = () => {
-        try {
-            const encrypted = document.getElementById("text1").value;
-            let decrypted = this.xorWithKey(atob(encrypted), "key");
-            document.getElementById("text2").value = JSON.stringify(JSON.parse(decrypted), null, 2);
-        }
-        catch(e) {
-            alert('Invalid Base64')
-        }
     };
 
     encrypt = (data) => {
@@ -66,13 +51,21 @@ class Converter extends Component {
 
         return (
             <div style={styles.textbox}>
-                <textarea id="text1" style={styles.textarea} value={this.encrypt(this.props.store.getState()['data'])}/>
+                <textarea id="text1" style={styles.textarea} readOnly value={this.encrypt(this.props.data)}/>
                 <br />
-                <button onClick={this.renderEditor}>Back</button>
+                <button onClick={this.props.actions.selectBasic}>Back</button>
             </div>
 
         );
     }
 }
 
-export default Converter;
+const mapStateToProps = (state) => ({ 
+    data: state.data 
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    actions: bindActionCreators(actions, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Converter);

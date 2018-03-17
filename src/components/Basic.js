@@ -22,8 +22,8 @@ class Basic extends Component {
 
         return (
             <div style={styles.basic}>
-                <FileUpload store={this.props.store}/>
-                <Editor store={this.props.store}/>
+                <FileUpload/>
+                <Editor/>
             </div>
 
         );

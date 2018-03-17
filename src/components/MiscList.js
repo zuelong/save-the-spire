@@ -1,34 +1,12 @@
 import React, { Component } from 'react';
-import { types } from '../utils/ReduxStore'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { actions } from '../utils/ReduxStore';
 
 class MiscList extends Component {
 
-    handleChange = () =>{
-        let data = this.props.store.getState()['data'];
-        if(document.getElementById('hp') !== null) {
-            document.getElementById('hp').value = data.current_health;
-            document.getElementById('max_hp').value = data.max_health;
-            document.getElementById('gold').value = data.gold;
-            document.getElementById('hand_size').value = data.hand_size;
-        }
-    };
-
-    updateValues = () => {
-        let data = this.props.store.getState()['data'];
-        data.current_health = document.getElementById('hp').value || data.current_health;
-        data.max_health = document.getElementById('max_hp').value  || data.max_health;
-        data.gold = document.getElementById('gold').value  || data.gold;
-        data.hand_size = document.getElementById('hand_size').value  || data.hand_size;
-        this.props.store.dispatch({type: types.UPDATE_JSON, payload: data})
-    };
-
-    componentDidMount(){
-        this.props.store.subscribe(this.handleChange);
-        this.handleChange();
-    }
-
-    componentWillUnmount() {
-        this.props.store.subscribe(() => {});
+    updateValues = (event, key) => {
+        this.props.actions.updateMisc(key, event.target.value);
     };
 
     render() {
@@ -44,16 +22,32 @@ class MiscList extends Component {
             }
         };
 
+        const attributes = {
+            'current_health': 'Current Health',
+            'max_health': 'Max Health',
+            'gold': 'Gold',
+            'hand_size': 'Hand Size'
+        };
+        
+
         return (
             <div style={styles.misc}>
-                <label>Current Health: </label><input id="hp" type="number" onBlur={this.updateValues}/>
-                <label>Max Health: </label><input id="max_hp" type="number" onBlur={this.updateValues}/>
-                <label>Gold: </label><input id="gold" type="number" onBlur={this.updateValues}/>
-                <label>Hand Size: </label><input id="hand_size" type="number" onBlur={this.updateValues}/>
+                {Object.entries(attributes).map(([key, label]) => [
+                    <label key={key+'label'}>{label + ': '}</label>,
+                    <input key={key+'input'} type="number" value={this.props.data[key]} onChange={event => this.updateValues(event, key)}/>
+                ])}
             </div>
 
         );
     }
 }
 
-export default MiscList;
+const mapStateToProps = (state) => ({ 
+    data: state.data 
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    actions: bindActionCreators(actions, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MiscList);

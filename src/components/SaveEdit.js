@@ -1,22 +1,31 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import SaveEditNavBar from "./SaveEditNavBar";
-import ReactDOM from "react-dom";
 import Basic from "./Basic";
+import Advanced from './Advanced';
+import Converter from './Converter';
 
 class SaveEdit extends Component{
-
-    componentDidMount(){
-        ReactDOM.render(<Basic store={this.props.store}/>, document.getElementById('save-edit-content'));
-    }
-
     render(){
+        let content;
+        if (this.props.savePage === 'Basic') {
+            content = <Basic/>
+        } else if (this.props.savePage === 'Advanced') {
+            content = <Advanced/>
+        } else if (this.props.savePage === 'Converter') {
+            content = <Converter/>
+        }
         return(
             <div>
-                <SaveEditNavBar store={this.props.store}/>
-                <div id="save-edit-content" />
+                <SaveEditNavBar/>
+                {content}
             </div>
         )
     }
 }
 
-export default SaveEdit
+const mapStateToProps = (state) => ({ 
+    savePage: state.savePage 
+});
+
+export default connect(mapStateToProps)(SaveEdit)
