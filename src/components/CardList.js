@@ -1,30 +1,11 @@
 import React, { Component } from 'react';
-import Card from "./Card";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { actions } from '../utils/ReduxStore'
+
+import Item from "./Item";
 
 class CardList extends Component {
-
-    state = {selected_cards: [], card_names: []};
-
-    handleChange = () =>{
-        const tmp_cards = this.props.store.getState()['data']['cards'];
-        this.setState({selected_cards: tmp_cards});
-        this.setState({card_names: []});
-        let tmp_list = [];
-        let i = 1;
-        for(let card of tmp_cards){
-            let plus = '';
-            card.upgrades ? plus = '+' : plus = '';
-            tmp_list.push(<Card store={this.props.store} name={card.id + plus} number={i - 1} grid={i}/>);
-            i++;
-        }
-        this.setState({card_names: tmp_list});
-    };
-
-    componentDidMount(){
-        this.props.store.subscribe(this.handleChange);
-        this.handleChange()
-    }
-
     render() {
 
         const styles = {
@@ -46,12 +27,21 @@ class CardList extends Component {
             <div>
                 <label>Cards:</label>
                 <div style={styles.cardlist}>
-                    {this.state.card_names}
+                    {this.props.cards.map((card, i) => 
+                        <Item type="Card" onClick={() => this.props.actions.removeCard(i)} name={card.id + (card.upgrades ? '+' : '')} key={i} />
+                    )}
                 </div>
             </div>
-
         );
     }
 }
 
-export default CardList;
+const mapStateToProps = (state) => ({ 
+    cards: state.data.cards
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    actions: bindActionCreators(actions, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardList);

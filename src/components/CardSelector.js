@@ -1,25 +1,34 @@
 import React, {Component} from "react";
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import cards from "./CardsJSON";
-import CardItem from "./CardItem";
+import Item from "./Item";
 import Search from './Search';
-import { types } from "../utils/ReduxStore"
+import { actions } from "../utils/ReduxStore"
 
 class CardSelector extends Component {
 
-    state = { searchTerm: '' };
+    state = {
+        upgraded: false,
+        searchTerm: '',
+    }
 
-    componentDidMount = () => {
+    sortedCards = Object.keys(cards).sort();
 
-        document.getElementById('upgraded').checked = this.props.store.getState()['checkbox']
-
-        this.unsubscribe = this.props.store.subscribe(() => this.setState({
-            searchTerm: this.props.store.getState()['searchTerm']
-        }));
+    onSearchTermChanged = (searchTerm) => {
+        this.setState({searchTerm});
     };
 
-    updateCheckbox = () => {
-      this.props.store.dispatch({type: types.UPDATE_CHECKBOX, payload: document.getElementById('upgraded').checked})
+    toggleCheckbox = () => {
+        this.setState({upgraded: !this.state.upgraded});
     };
+
+    addCard(card) {
+        this.props.actions.addCard({
+            upgrades: this.state.upgraded ? 1 : 0, 
+            id: card
+        });
+    }
 
     render() {
 
@@ -41,20 +50,16 @@ class CardSelector extends Component {
                 justifyContent: 'center'
             }
         };
-        let cards_keys = Object.keys(cards).sort()
-        cards_keys = cards_keys.filter(card => card.toLowerCase().startsWith(this.state.searchTerm.trim()));
-        let cardsList = [];
 
-        for(let i = 0; i < cards_keys.length; i++) {
-            cardsList.push(
-                <CardItem store={this.props.store} grid={i} value={cards_keys[i]} />
-            )}
+        const cardsList = this.sortedCards
+            .filter(card => card.toLowerCase().startsWith(this.state.searchTerm.trim()))
+            .map((card, i) => <Item type="CardItem" onClick={() => this.addCard(card)} name={card + (this.state.upgraded ? '+' : '')} key={card}/>)
 
         return (
             <div>
-                <Search store={this.props.store}/>
+                <Search onSearchTermChanged={this.onSearchTermChanged}/>
                 <div style={styles.upgrade}>
-                    <input onClick={this.updateCheckbox} id="upgraded" type='checkbox' /><label>upgraded</label>
+                    <input onChange={this.toggleCheckbox} type='checkbox' value={this.state.upgraded}/><label>upgraded</label>
                 </div>
                 <div style={styles.cards}>
                     {cardsList}
@@ -62,10 +67,14 @@ class CardSelector extends Component {
             </div>
         );
     }
-
-    componentWillUnmount() {
-        this.unsubscribe();
-    }
 }
 
-export default CardSelector
+const mapStateToProps = (state) => ({ 
+    data: state.data
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    actions: bindActionCreators(actions, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardSelector)

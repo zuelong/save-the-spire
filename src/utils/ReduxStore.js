@@ -2,106 +2,96 @@ import {createStore} from "redux";
 
 
 const types = {
-    SELECT_CARDS: 'CARDS',
-    SELECT_RELICS: 'RELICS',
-    SELECT_BASIC: 'BASIC',
-    SELECT_ADVANCED: 'ADVANCED',
+    SELECT_SAVE_PAGE: 'SELECT_SAVE_PAGE',
+    SELECT_ITEM_PAGE: 'SELECT_ITEM_PAGE',
     UPDATE_JSON: 'UPDATE JSON',
     ADD_CARD: 'ADD CARD',
-    UPDATE_CHECKBOX: 'UPDATE CHECKBOX',
-    UPDATE_SEARCH: 'UPDATE SEARCH'
+    REMOVE_CARD: 'REMOVE_CARD',
+    ADD_RELIC: 'ADD_RELIC',
+    REMOVE_RELIC: 'REMOVE_RELIC',
+    UPDATE_MISC: 'UPDATE_MISC',
+};
+
+const actions = {
+    selectBasic: () => ({type: types.SELECT_SAVE_PAGE, payload: 'Basic'}),
+    selectAdvanced: () => ({type: types.SELECT_SAVE_PAGE, payload: 'Advanced'}),
+    selectConverter: () => ({type: types.SELECT_SAVE_PAGE, payload: 'Converter'}),
+    selectCards: () => ({type: types.SELECT_ITEM_PAGE, payload: 'Cards'}),
+    selectRelics: () => ({type: types.SELECT_ITEM_PAGE, payload: 'Relics'}),
+    updateJson: (json) => ({type: types.UPDATE_JSON, payload: json}),
+    addCard: (card) => ({type: types.ADD_CARD, payload: card}),
+    removeCard: (index) => ({type: types.REMOVE_CARD, payload: index}),
+    addRelic: (relic) => ({type: types.ADD_RELIC, payload: relic}),
+    removeRelic: (index) => ({type: types.REMOVE_RELIC, payload: index}),
+    updateMisc: (key, value) => ({type: types.UPDATE_MISC, payload: {key, value}})
 };
 
 const reducer = (state, action) => {
-    if (action.type === types.SELECT_CARDS) {
+    if (action.type === types.SELECT_ITEM_PAGE) {
         return {
             ...state,
-            Cards: {
-                selected: true,
-                color: '#2e282a'
-            },
-            Relics: {
-                selected: false,
-                color: '#3e383a'
-            }
+            itemPage: action.payload
         };
     }
-    else if (action.type === types.SELECT_RELICS){
+    else if (action.type === types.SELECT_SAVE_PAGE) {
         return {
             ...state,
-            Cards: {
-                selected: false,
-                color: '#3e383a'
-            },
-            Relics: {
-                selected: true,
-                color: '#2e282a'
-            }
+            savePage: action.payload,
         };
     }
-    else if (action.type === types.SELECT_BASIC){
-        return {
-            ...state,
-            Basic: {
-                selected: true,
-                color: '#2e282a'
-            },
-            Advanced: {
-                selected: false,
-                color: '#3e383a'
-            }
-        };
-    }
-    else if (action.type === types.SELECT_ADVANCED){
-        return {
-            ...state,
-            Basic: {
-                selected: false,
-                color: '#3e383a'
-            },
-            Advanced: {
-                selected: true,
-                color: '#2e282a'
-            }
-        };
-    }
-    else if (action.type === types.UPDATE_JSON){
+    else if (action.type === types.UPDATE_JSON) {
         return {
             ...state,
             data: action.payload
         };
-    }
-    else if (action.type === types.UPDATE_CHECKBOX){
+    } else if (action.type === types.ADD_CARD) {
         return {
             ...state,
-            checkbox: action.payload
+            data: {
+                ...state.data,
+                cards: [...state.data.cards, action.payload]
+            }
         };
-    } else if (action.type === types.UPDATE_SEARCH) {
+    } else if (action.type === types.REMOVE_CARD) {
         return {
             ...state,
-            searchTerm: action.payload
+            data: {
+                ...state.data,
+                cards: state.data.cards.filter((_, i) => i !== action.payload)
+            }
         };
     }
-    return state
+    else if (action.type === types.ADD_RELIC) {
+        return {
+            ...state,
+            data: {
+                ...state.data,
+                relics: [...state.data.relics, action.payload]
+            }
+        };
+    } else if (action.type === types.REMOVE_RELIC) {
+        return {
+            ...state,
+            data: {
+                ...state.data,
+                relics: state.data.relics.filter((_, i) => i !== action.payload)
+            }
+        };
+    } else if (action.type === types.UPDATE_MISC) {
+        return {
+            ...state,
+            data: {
+                ...state.data,
+                [action.payload.key]: action.payload.value
+            }
+        };
+    }
+    return state;
 };
 
 const initialState = {
-    Cards: {
-        selected: true,
-        color: '#2e282a'
-    },
-    Relics: {
-        selected: false,
-        color: '#3e383a'
-    },
-    Basic: {
-        selected: true,
-        color: '#2e282a'
-    },
-    Advanced: {
-        selected: false,
-        color: '#3e383a'
-    },
+    itemPage: 'Cards',
+    savePage: 'Basic',
     data: {
         current_health: 80,
         max_health: 80,
@@ -117,5 +107,5 @@ const initialState = {
 const store = createStore(reducer, initialState);
 
 export {
-    store, types
+    store, types, actions
 }

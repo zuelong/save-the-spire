@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
-import { types } from '../utils/ReduxStore'
+import { connect } from 'react-redux';
+import { actions } from '../utils/ReduxStore'
+import { bindActionCreators } from 'redux';
 
 class FileUpload extends Component {
+    state = {
+        file: null
+    }
 
     convertToByteArray = (data) => {
         let byte_array = [];
@@ -39,15 +44,13 @@ class FileUpload extends Component {
     readFile = (f) => {
         let reader = new FileReader();
         reader.onload = (evt) => {
-            // The file's text will be printed here
             let data = evt.target.result;
-            this.props.store.dispatch({type: types.UPDATE_JSON, payload: this.decrypt(data)})
+            this.props.actions.updateJson(this.decrypt(data));
         };
 
         reader.readAsText(f);
     };
 
-    //TODO: Clean up logic and make use of React states/props
     handleFileSelect = (evt) => {
         evt.stopPropagation();
         evt.preventDefault();
@@ -55,15 +58,10 @@ class FileUpload extends Component {
         let files = evt.dataTransfer.files; // FileList object.
 
         // files is a FileList of File objects. List some properties.
-        let output = [];
         let f = files[0];
-        output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
-            f.size, ' bytes, last modified: ',
-            f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
-            '</li>');
-        this.readFile(f);
 
-        document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+        this.setState({file: f});
+        this.readFile(f);
     };
 
     handleDragOver = (evt) => {
@@ -71,6 +69,24 @@ class FileUpload extends Component {
         evt.preventDefault();
         evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
     };
+
+    createFileInfo() {
+        const file = this.state.file;
+        if (!file) {
+            return null;
+        }
+        const name = escape(file.name);
+        const type = file.type || 'n/a';
+        const size = file.size;
+        const lastModified = file.lastModifiedDate ? file.lastModifiedDate.toLocaleDateString() : 'n/a';
+        return (
+            <ul>
+                <li>
+                    <strong>{name}</strong> ({type}) - {size} bytes, last modified: {lastModified}
+                </li>
+            </ul>
+        );
+    }
 
     render() {
 
@@ -99,6 +115,7 @@ class FileUpload extends Component {
         return (
             <div style={styles.fileupload}>
                 <div id="drop_zone" onDragOver={this.handleDragOver} onDrop={this.handleFileSelect} style={styles.dropzone}>Drop file here</div>
+                {this.createFileInfo()}
                 <output id="list"></output>
             </div>
 
@@ -106,4 +123,8 @@ class FileUpload extends Component {
     }
 }
 
-export default FileUpload;
+const mapDispatchToProps = (dispatch) => ({
+    actions: bindActionCreators(actions, dispatch)
+});
+
+export default connect(null, mapDispatchToProps)(FileUpload);

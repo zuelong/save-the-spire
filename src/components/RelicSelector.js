@@ -1,18 +1,12 @@
 import React, {Component} from "react";
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { actions } from '../utils/ReduxStore';
 import relics from "./RelicsJSON";
-import RelicItem from "./RelicItem";
 import Search from './Search';
+import Item from "./Item";
 
 class RelicSelector extends Component {
-    
-    state = { searchTerm: '' };
-
-    componentDidMount = () => {
-
-        this.unsubscribe = this.props.store.subscribe(() => this.setState({
-            searchTerm: this.props.store.getState()['searchTerm']
-        }));
-    }
     render() {
 
         const styles = {
@@ -25,29 +19,29 @@ class RelicSelector extends Component {
             }
         };
 
-        let relics_keys = Object.keys(relics).sort();
-        relics_keys = relics_keys.filter(relic => relic.toLowerCase().startsWith(this.state.searchTerm.trim()));
-
-        let relicsList = [];
-
-        for(let i = 0; i < relics_keys.length; i++) {
-            relicsList.push(
-                <RelicItem store={this.props.store} grid={i} value={relics_keys[i]} />
-            )}
+        const relicsList = Object.keys(relics)
+            .filter(relic => relic.toLowerCase().startsWith(this.props.searchTerm.trim()))
+            .sort()
+            .map((relic, i) => <Item type="RelicItem" onClick={() => this.props.actions.addRelic(relic)} name={relic} key={relic}/>)
 
         return (
             <div>
-                <Search store={this.props.store}/>
+                <Search/>
                 <div style={styles.relics}>
                     {relicsList}
                 </div>
             </div>    
         );
     }
-
-    componentWillUnmount() {
-        this.unsubscribe();
-    }
 }
 
-export default RelicSelector
+const mapStateToProps = (state) => ({ 
+    data: state.data,
+    searchTerm: state.searchTerm
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    actions: bindActionCreators(actions, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(RelicSelector);

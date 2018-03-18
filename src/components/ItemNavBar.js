@@ -1,12 +1,12 @@
 import React, {Component} from "react";
-import ItemNavItem from "./ItemNavItem"
-import CardSelector from "./CardSelector"
-import RelicSelector from "./RelicSelector";
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { actions } from '../utils/ReduxStore'
+import NavItem from "./NavItem";
 
 class ItemNavBar extends Component{
 
     render(){
-
         const styles = {
             navbar: {
                 display: 'grid',
@@ -19,13 +19,30 @@ class ItemNavBar extends Component{
             },
         };
 
+
         return(
             <div style={styles.navbar}>
-                <ItemNavItem store={this.props.store} load={<CardSelector store={this.props.store}/>} name={'Cards'}/>
-                <ItemNavItem store={this.props.store} load={<RelicSelector store={this.props.store}/>} name={'Relics'}/>
+                <NavItem 
+                    isSelected={this.props.itemPage === 'Cards'} 
+                    name={'Cards'}
+                    onClick={() => this.props.actions.selectCards()}
+                />
+                <NavItem 
+                    isSelected={this.props.itemPage === 'Relics'} 
+                    name={'Relics'}
+                    onClick={() => this.props.actions.selectRelics()}
+                />
             </div>
         )
     }
 }
 
-export default ItemNavBar
+const mapStateToProps = (state) => ({ 
+    itemPage: state.itemPage 
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    actions: bindActionCreators(actions, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ItemNavBar)

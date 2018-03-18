@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Provider } from 'react-redux';
 import './App.css';
 import ItemList from "./components/ItemList";
 import { store } from "./utils/ReduxStore";
@@ -15,10 +16,12 @@ const styles = {
 class App extends Component {
   render() {
     return (
-      <div style={styles.app}>
-          <SaveEdit store={store}/>
-          <ItemList store={store}/>
-      </div>
+      <Provider store={store}>
+        <div style={styles.app}>
+            <SaveEdit/>
+            <ItemList/>
+        </div>
+      </Provider>
     );
   }
 }

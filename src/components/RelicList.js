@@ -1,28 +1,10 @@
 import React, { Component } from 'react';
-import Relic from "./Relic";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import Item from "./Item";
+import { actions } from "../utils/ReduxStore";
 
 class RelicList extends Component {
-
-    state = {selected_relics: [], relic_names: []};
-
-    handleChange = () =>{
-        const tmp_relics = this.props.store.getState()['data']['relics'];
-        this.setState({selected_relics: tmp_relics});
-        this.setState({relic_names: []});
-        let tmp_list = [];
-        let i = 1;
-        for(let relics of tmp_relics){
-            tmp_list.push(<Relic store={this.props.store} number={i - 1} name={relics} grid={i}/>);
-            i++;
-        }
-        this.setState({relic_names: tmp_list});
-    };
-
-    componentDidMount(){
-        this.props.store.subscribe(this.handleChange);
-        this.handleChange();
-    }
-
     render() {
 
         const styles = {
@@ -45,7 +27,9 @@ class RelicList extends Component {
             <div>
                 <label>Relics:</label>
                 <div style={styles.reliclist}>
-                    {this.state.relic_names}
+                    {this.props.relics.map((relic, i) => 
+                        <Item type="Relic" name={relic} key={i} onClick={() => this.props.actions.removeRelic(i)}/>
+                    )}
                 </div>
             </div>
 
@@ -53,4 +37,12 @@ class RelicList extends Component {
     }
 }
 
-export default RelicList;
+const mapStateToProps = (state) => ({ 
+    relics: state.data.relics
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    actions: bindActionCreators(actions, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(RelicList);

@@ -1,18 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import ItemNavBar from "./ItemNavBar";
-import ReactDOM from "react-dom";
 import CardSelector from "./CardSelector";
-
-
+import RelicSelector from './RelicSelector';
 
 class ItemList extends Component {
-
-    componentDidMount(){
-        ReactDOM.render(<CardSelector store={this.props.store}/>, document.getElementById('item-content'));
-    }
-
     render() {
-
         const styles = {
             cardlist: {
                 height: '100vh',
@@ -25,13 +18,25 @@ class ItemList extends Component {
             }
         };
 
+        let content;
+        if (this.props.itemPage === 'Cards') {
+            content = <CardSelector/>
+        } else if (this.props.itemPage === 'Relics') {
+            content = <RelicSelector/>
+        }
+
         return (
             <div style={styles.cardlist}>
-                <ItemNavBar store={this.props.store}/>
-                <div id="item-content" style={styles.content}/>
+                <ItemNavBar/>
+                {content}
             </div>
         );
     }
 }
 
-export default ItemList
+const mapStateToProps = (state) => ({ 
+    itemPage: state.itemPage 
+});
+
+
+export default connect(mapStateToProps)(ItemList)

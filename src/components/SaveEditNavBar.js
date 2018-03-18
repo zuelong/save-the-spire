@@ -1,7 +1,8 @@
 import React, {Component} from "react";
-import SaveEditNavItem from "./SaveEditNavItem"
-import Advanced from "./Advanced";
-import Basic from "./Basic";
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { actions } from '../utils/ReduxStore'
+import NavItem from "./NavItem";
 
 class SaveEditNavBar extends Component{
 
@@ -21,11 +22,27 @@ class SaveEditNavBar extends Component{
 
         return(
             <div style={styles.navbar}>
-                <SaveEditNavItem store={this.props.store} load={<Basic store={this.props.store}/>} name={'Basic'}/>
-                <SaveEditNavItem store={this.props.store} load={<Advanced store={this.props.store}/>} name={'Advanced'}/>
+                <NavItem 
+                    isSelected={this.props.savePage === 'Basic'}
+                    name={'Basic'}
+                    onClick={() => this.props.actions.selectBasic()}
+                />
+                <NavItem 
+                    isSelected={this.props.savePage === 'Advanced'}
+                    name={'Advanced'}
+                    onClick={() => this.props.actions.selectAdvanced()}
+                />
             </div>
         )
     }
 }
 
-export default SaveEditNavBar
+const mapStateToProps = (state) => ({ 
+    savePage: state.savePage 
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    actions: bindActionCreators(actions, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SaveEditNavBar)
