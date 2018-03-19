@@ -37,6 +37,10 @@ class Item extends Component {
             };
         }
 
+        if (this.props.bottled === true) {
+            specificStyle.border = '3px solid #ffd700';
+        }
+
         return {
             ...commonStyle, 
             ...specificStyle, 

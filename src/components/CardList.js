@@ -23,12 +23,22 @@ class CardList extends Component {
             }
         };
 
+        // The bottled name may match multiple cards, but only one gets the highlight
+        const bottledIndices = ['bottled_tornado', 'bottled_flame', 'bottled_lightning']
+            .filter(key => this.props.data[key] !== undefined)
+            .map(key => this.props.cards.findIndex(card => card.id === this.props.data[key]));
+
         return (
             <div>
                 <label>Cards:</label>
                 <div style={styles.cardlist}>
                     {this.props.cards.map((card, i) => 
-                        <Item type="Card" onClick={() => this.props.actions.removeCard(i)} name={card.id + (card.upgrades ? '+' : '')} key={i} />
+                        <Item type="Card"
+                            name={card.id + (card.upgrades ? '+' : '')} 
+                            bottled={bottledIndices.includes(i)}
+                            onClick={() => this.props.actions.removeCard(i)} 
+                            key={i}
+                        />
                     )}
                 </div>
             </div>
@@ -37,6 +47,7 @@ class CardList extends Component {
 }
 
 const mapStateToProps = (state) => ({ 
+    data: state.data,
     cards: state.data.cards
 });
 
