@@ -28,7 +28,12 @@ class RelicList extends Component {
                 <label>Relics:</label>
                 <div style={styles.reliclist}>
                     {this.props.relics.map((relic, i) => 
-                        <Item type="Relic" name={relic} key={i} onClick={() => this.props.actions.removeRelic(i)}/>
+                        <Item type="Relic" 
+                            name={relic} 
+                            bottled={relic.startsWith('Bottled ')}
+                            onClick={() => this.props.actions.removeRelic(i)}
+                            key={i} 
+                        />
                     )}
                 </div>
             </div>
@@ -37,7 +42,7 @@ class RelicList extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({ 
+const mapStateToProps = (state) => ({
     relics: state.data.relics
 });
 

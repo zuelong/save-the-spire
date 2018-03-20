@@ -21,7 +21,7 @@ const actions = {
     updateJson: (json) => ({type: types.UPDATE_JSON, payload: json}),
     addCard: (card) => ({type: types.ADD_CARD, payload: card}),
     removeCard: (index) => ({type: types.REMOVE_CARD, payload: index}),
-    addRelic: (relic) => ({type: types.ADD_RELIC, payload: relic}),
+    addRelic: (relic, bottleTarget) => ({type: types.ADD_RELIC, payload: {relic, bottleTarget}}),
     removeRelic: (index) => ({type: types.REMOVE_RELIC, payload: index}),
     updateMisc: (key, value) => ({type: types.UPDATE_MISC, payload: {key, value}})
 };
@@ -60,23 +60,37 @@ const reducer = (state, action) => {
                 cards: state.data.cards.filter((_, i) => i !== action.payload)
             }
         };
-    }
-    else if (action.type === types.ADD_RELIC) {
-        return {
+    } else if (action.type === types.ADD_RELIC) {
+        const newState = {
             ...state,
             data: {
                 ...state.data,
-                relics: [...state.data.relics, action.payload]
+                relics: [...state.data.relics, action.payload.relic]
             }
-        };
+        }
+
+        if (action.payload.relic.startsWith('Bottled ')) {
+            const bottledKey = action.payload.relic.replace(' ', '_').toLowerCase();
+            newState.data[bottledKey] = action.payload.bottleTarget;
+        }
+
+        return newState;
     } else if (action.type === types.REMOVE_RELIC) {
-        return {
+        const relic = state.data.relics[action.payload];
+        const newState = {
             ...state,
             data: {
                 ...state.data,
                 relics: state.data.relics.filter((_, i) => i !== action.payload)
             }
         };
+
+        if (relic.startsWith('Bottled ')) {
+            const bottledKey = relic.replace(' ', '_').toLowerCase();
+            delete newState.data[bottledKey];
+        }
+
+        return newState;
     } else if (action.type === types.UPDATE_MISC) {
         return {
             ...state,
