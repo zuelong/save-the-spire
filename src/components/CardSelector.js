@@ -69,12 +69,8 @@ class CardSelector extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({ 
-    data: state.data
-});
-
 const mapDispatchToProps = (dispatch) => ({
     actions: bindActionCreators(actions, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CardSelector)
+export default connect(null, mapDispatchToProps)(CardSelector)

@@ -6,6 +6,7 @@
     "fine-uploader": "^5.15.6",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-modal": "^3.3.2",
     "react-redux": "^5.0.7",
     "react-redux-connect": "^0.1.0",
     "react-scripts": "1.1.1",
