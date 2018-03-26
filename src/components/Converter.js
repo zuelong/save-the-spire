@@ -37,6 +37,15 @@ class Converter extends Component {
         }
     };
 
+    downloadFile = () => {
+        let filename = (this.props.filename.startsWith("IRONCLAD") ? "IRONCLAD" : this.props.filename.startsWith("THE_SILENT") ? "THE_SILENT" : "UNKNOWN_CHARACTER") + ".autosave"
+        let element = document.createElement("a")
+        let file = new Blob([this.encrypt(this.props.data)], {type: 'text/plain'})
+        element.href = URL.createObjectURL(file)
+        element.download = filename
+        element.click()
+    }
+
     render() {
 
         const styles = {
@@ -53,6 +62,7 @@ class Converter extends Component {
             <div style={styles.textbox}>
                 <textarea id="text1" style={styles.textarea} readOnly value={this.encrypt(this.props.data)}/>
                 <br />
+                <button onClick={this.downloadFile}>Download File</button>
                 <button onClick={this.props.actions.selectBasic}>Back</button>
             </div>
 
@@ -61,7 +71,8 @@ class Converter extends Component {
 }
 
 const mapStateToProps = (state) => ({ 
-    data: state.data 
+    data: state.data,
+    filename: state.filename
 });
 
 const mapDispatchToProps = (dispatch) => ({

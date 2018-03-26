@@ -10,6 +10,7 @@ const types = {
     ADD_RELIC: 'ADD_RELIC',
     REMOVE_RELIC: 'REMOVE_RELIC',
     UPDATE_MISC: 'UPDATE_MISC',
+    SET_FILE_NAME: 'SET_FILE_NAME'
 };
 
 const actions = {
@@ -23,7 +24,8 @@ const actions = {
     removeCard: (index) => ({type: types.REMOVE_CARD, payload: index}),
     addRelic: (relic, bottleTarget) => ({type: types.ADD_RELIC, payload: {relic, bottleTarget}}),
     removeRelic: (index) => ({type: types.REMOVE_RELIC, payload: index}),
-    updateMisc: (key, value) => ({type: types.UPDATE_MISC, payload: {key, value}})
+    updateMisc: (key, value) => ({type: types.UPDATE_MISC, payload: {key, value}}),
+    setFileName: (filename) => ({type: types.SET_FILE_NAME, payload: filename})
 };
 
 const reducer = (state, action) => {
@@ -99,6 +101,11 @@ const reducer = (state, action) => {
                 [action.payload.key]: action.payload.value
             }
         };
+    } else if (action.type === types.SET_FILE_NAME) {
+        return {
+            ...state,
+            filename: action.payload
+        }
     }
     return state;
 };
@@ -115,7 +122,8 @@ const initialState = {
         relics: []
     },
     searchTerm: '',
-    upgraded: false
+    upgraded: false,
+    filename: ''
 };
 
 const store = createStore(reducer, initialState);

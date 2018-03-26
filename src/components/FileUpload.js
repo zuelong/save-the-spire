@@ -62,6 +62,8 @@ class FileUpload extends Component {
 
         this.setState({file: f});
         this.readFile(f);
+
+        this.props.actions.setFileName(f.name);
     };
 
     handleDragOver = (evt) => {
