@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import CardList from './CardList'
 import RelicList from "./RelicList";
+import PotionList from "./PotionList";
 import MiscList from "./MiscList";
 import { actions } from "../utils/ReduxStore"
 
@@ -34,6 +35,7 @@ class Editor extends Component {
                 <MiscList/>
                 <CardList/>
                 <RelicList/>
+                <PotionList/>
                 <button onClick={this.showConverter}>Generate Save File</button>
                 <p>
                     Welcome to the new Basic option for the save editor!  To learn how to use it: <a href="https://github.com/zuelong/save-the-spire/blob/master/Basic.md">click here!</a>

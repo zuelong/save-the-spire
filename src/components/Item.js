@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styles from '../styles/Potions.module.css'
 
 class Item extends Component {
 
@@ -35,6 +36,11 @@ class Item extends Component {
                 backgroundColor: this.state.hover ? '#df2e26' : '#ef3e36',
                 border: '1px solid #df2e26'
             };
+        } else if (this.props.type === 'Potion') {
+            specificStyle = {
+                backgroundColor: this.state.hover ? '#C4E717' : '#D7EE62',
+                border: '1px solid #C4E717'
+            };
         }
 
         if (this.props.bottled === true) {
@@ -50,6 +56,21 @@ class Item extends Component {
 
     render() {
         const style = this.createStyle();
+
+        if (this.props.type == 'Potion') {
+            if (this.props.active) {
+                style.border = "2px solid red"
+            }
+
+            let key = `potion-${this.props.isPlaceholder ? "placeholder" : this.props.name.split(" ")[0].toLowerCase()}`
+
+            return (
+                <div id={this.props.id} onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover} onClick={this.props.onClick} style={style}>
+                    <div className={typeof styles[key] == "undefined" ? styles.potion_placeholder : styles[key]}></div>
+                </div>
+
+            )
+        }
 
         return (
             <div onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover} onClick={this.props.onClick} style={style}>
