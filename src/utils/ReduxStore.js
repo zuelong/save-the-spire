@@ -72,14 +72,6 @@ const reducer = (state, action) => {
                 potions: newPotions
             }
         };
-    } else if (action.type === types.REMOVE_POTION) {
-        return {
-            ...state,
-            data: {
-                ...state.data,
-                potions: state.data.potions.filter((_, i) => i !== action.payload)
-            }
-        };
     } else if (action.type === types.ADD_RELIC) {
         const newState = {
             ...state,
