@@ -59,7 +59,7 @@ class PotionList extends Component {
                     <div style={styles.potionlist}>
                         {this.sortedPotions.map((potion, i) => 
                             <Item type="Potion" 
-                                onClick={() => {this.setState({showModal: false}); this.props.actions.addPotion(this.state.modalIndex, potion)}}
+                                onClick={() => {this.setState({showModal: false}); this.props.actions.setPotion(this.state.modalIndex, potion)}}
                                 name={potion}
                                 key={potion}
                                 item={potions[potion]}
