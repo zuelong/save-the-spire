@@ -14,7 +14,7 @@ class PotionList extends Component {
         modalIndex: 0
     }
 
-    sortedPotions = ["Potion Slot", ...Object.keys(potions).filter((potion) => potion != "Potion Slot").sort()]
+    sortedPotions = ["Potion Slot", ...Object.keys(potions).filter((potion) => potion !== "Potion Slot").sort()]
 
     render() {
 
@@ -51,7 +51,7 @@ class PotionList extends Component {
                             item={potions[potion]}
                             id={`potion-${i}`}
                             active={false}
-                            isPlaceholder={potion == "Potion Slot"}
+                            isPlaceholder={potion === "Potion Slot"}
                         />
                     )}
                 </div>
@@ -64,8 +64,8 @@ class PotionList extends Component {
                                 key={potion}
                                 item={potions[potion]}
                                 id={`potion-popup-${i}`}
-                                active={potion == this.props.potions[this.state.modalIndex]}
-                                isPlaceholder={potion == "Potion Slot"}
+                                active={potion === this.props.potions[this.state.modalIndex]}
+                                isPlaceholder={potion === "Potion Slot"}
                             />
                         )}
                     </div>

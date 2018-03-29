@@ -57,7 +57,7 @@ class Item extends Component {
     render() {
         const style = this.createStyle();
 
-        if (this.props.type == 'Potion') {
+        if (this.props.type === 'Potion') {
             if (this.props.active) {
                 style.border = "2px solid red"
             }
@@ -66,7 +66,7 @@ class Item extends Component {
 
             return (
                 <div id={this.props.id} onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover} onClick={this.props.onClick} style={style}>
-                    <div className={typeof styles[key] == "undefined" ? styles.potion_placeholder : styles[key]}></div>
+                    <div className={typeof styles[key] === "undefined" ? styles.potion_placeholder : styles[key]}></div>
                 </div>
 
             )
