@@ -9,7 +9,7 @@
     "react-modal": "^3.3.2",
     "react-redux": "^5.0.7",
     "react-redux-connect": "^0.1.0",
-    "react-scripts": "1.1.1",
+    "react-scripts": "2.0.0-next.b2fd8db8",
     "redux": "^3.7.2"
   },
   "scripts": {
