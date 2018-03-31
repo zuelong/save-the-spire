@@ -7,6 +7,7 @@ const types = {
     UPDATE_JSON: 'UPDATE JSON',
     ADD_CARD: 'ADD CARD',
     REMOVE_CARD: 'REMOVE_CARD',
+    SET_POTION: 'SET_POTION',
     ADD_RELIC: 'ADD_RELIC',
     REMOVE_RELIC: 'REMOVE_RELIC',
     UPDATE_MISC: 'UPDATE_MISC',
@@ -22,6 +23,7 @@ const actions = {
     updateJson: (json) => ({type: types.UPDATE_JSON, payload: json}),
     addCard: (card) => ({type: types.ADD_CARD, payload: card}),
     removeCard: (index) => ({type: types.REMOVE_CARD, payload: index}),
+    setPotion: (index, potion) => ({type: types.SET_POTION, payload: {index, potion}}),
     addRelic: (relic, bottleTarget) => ({type: types.ADD_RELIC, payload: {relic, bottleTarget}}),
     removeRelic: (index) => ({type: types.REMOVE_RELIC, payload: index}),
     updateMisc: (key, value) => ({type: types.UPDATE_MISC, payload: {key, value}}),
@@ -60,6 +62,16 @@ const reducer = (state, action) => {
             data: {
                 ...state.data,
                 cards: state.data.cards.filter((_, i) => i !== action.payload)
+            }
+        };
+    } else if (action.type === types.SET_POTION) {
+        let newPotions = state.data.potions
+        newPotions[action.payload.index] = action.payload.potion
+        return {
+            ...state,
+            data: {
+                ...state.data,
+                potions: newPotions
             }
         };
     } else if (action.type === types.ADD_RELIC) {
@@ -119,7 +131,8 @@ const initialState = {
         gold: 99,
         hand_size: 5,
         cards: [],
-        relics: []
+        relics: [],
+        potions: ["Potion Slot", "Potion Slot", "Potion Slot"]
     },
     searchTerm: '',
     upgraded: false,

@@ -1,0 +1,103 @@
+.potion {
+    background-image: url(/images/potions.png);
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.potion-ancient {
+    composes: potion;
+    width: 64px;
+    height: 64px;
+    background-position: 0 0;
+}
+
+.potion-block {
+    composes: potion;
+    width: 64px;
+    height: 64px;
+    background-position: -64px 0;
+}
+
+.potion-dexterity {
+    composes: potion;
+    width: 64px;
+    height: 64px;
+    background-position: -128px 0;
+}
+
+.potion-elixir {
+    composes: potion;
+    width: 64px;
+    height: 64px;
+    background-position: 0 -64px;
+}
+
+.potion-energy {
+    composes: potion;
+    width: 64px;
+    height: 64px;
+    background-position: -64px -64px;
+}
+
+.potion-explosive {
+    composes: potion;
+    width: 64px;
+    height: 64px;
+    background-position: -128px -64px;
+}
+
+.potion-fire {
+    composes: potion;
+    width: 64px;
+    height: 64px;
+    background-position: 0 -128px;
+}
+
+.potion-health {
+    composes: potion;
+    width: 64px;
+    height: 64px;
+    background-position: -64px -128px;
+}
+
+.potion-placeholder {
+    composes: potion;
+    width: 64px;
+    height: 64px;
+    background-position: -128px -128px;
+}
+
+.potion-poison {
+    composes: potion;
+    width: 64px;
+    height: 64px;
+    background-position: -192px 0;
+}
+
+.potion-regen {
+    composes: potion;
+    width: 64px;
+    height: 64px;
+    background-position: -192px -64px;
+}
+
+.potion-strength {
+    composes: potion;
+    width: 64px;
+    height: 64px;
+    background-position: -192px -128px;
+}
+
+.potion-swift {
+    composes: potion;
+    width: 64px;
+    height: 64px;
+    background-position: 0 -192px;
+}
+
+.potion-weak {
+    composes: potion;
+    width: 64px;
+    height: 64px;
+    background-position: -64px -192px;
+}
