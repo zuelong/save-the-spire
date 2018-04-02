@@ -74,9 +74,10 @@ class CardSelector extends Component {
         this.setState({filters: filters}) 
     }
 
-    filterCard(cardName) {
+    filterCard(cardName, filters=null) {
+        filters = filters || this.state.filters
         let card = cards[cardName]
-        for (let [property, options] of Object.entries(this.state.filters)) {
+        for (let [property, options] of Object.entries(filters)) {
             if (!options.includes(String(card[property]))) {
                 return false
             }
