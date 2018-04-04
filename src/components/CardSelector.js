@@ -24,13 +24,13 @@ const filterOptions = {
         CURSE:     "Curse"
     },
     cost:   {
-        "-2": "Unplayable",
-        "-1": "X",
         "0": "0",
         "1": "1",
         "2": "2",
         "3": "3",
-        "4": "4"
+        "4": "4",
+        "-1": "X",
+        "-2": "Unplayable"
     },
     type:   {
         ATTACK: "Attack",
