@@ -92,7 +92,7 @@ class CardSelector extends Component {
               display: 'grid',
               boxSizing: 'border-box',
               overflowY: 'scroll',
-              height: 'calc(100vh - 103px - 1.5rem)',
+              height: 'calc(100vh - 166px)',  //TODO: Fix this line
               alignContent: 'start'
           },
             upgrade: {
