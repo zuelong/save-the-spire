@@ -24,13 +24,13 @@ const filterOptions = {
         CURSE:     "Curse"
     },
     cost:   {
-        "0": "0",
-        "1": "1",
-        "2": "2",
-        "3": "3",
-        "4": "4",
+        "-2": "Unplayable",
         "-1": "X",
-        "-2": "Unplayable"
+        " 0": "0",
+        " 1": "1",
+        " 2": "2",
+        " 3": "3",
+        " 4": "4"
     },
     type:   {
         ATTACK: "Attack",
@@ -78,7 +78,8 @@ class CardSelector extends Component {
         filters = filters || this.state.filters
         let card = cards[cardName]
         for (let [property, options] of Object.entries(filters)) {
-            if (!options.includes(String(card[property]))) {
+            options = options.map((option) => {return option.trim()})
+            if (options.length > 0 && !options.includes(String(card[property]))) {
                 return false
             }
         }
