@@ -34,7 +34,7 @@ class CardList extends Component {
                 <div style={styles.cardlist}>
                     {this.props.cards.map((card, i) => 
                         <Item type="Card"
-                            name={card.id + (card.upgrades ? '+' : '')} 
+                            name={card.id + (card.upgrades.value !== "0" ? '+' : '')} 
                             bottled={bottledIndices.includes(i)}
                             onClick={() => this.props.actions.removeCard(i)} 
                             key={i}

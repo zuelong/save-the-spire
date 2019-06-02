@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { actions } from '../utils/ReduxStore'
 import { bindActionCreators } from 'redux';
+const LosslessJSON = require('lossless-json');
 
 class Converter extends Component {
     convertToByteArray = (data) => {
@@ -28,7 +29,7 @@ class Converter extends Component {
 
     encrypt = (data) => {
         try {
-            const decrypted = JSON.stringify(data);
+            const decrypted = LosslessJSON.stringify(data);
             let encrypted = btoa(this.xorWithKey(decrypted, "key"));
             return encrypted;
         }

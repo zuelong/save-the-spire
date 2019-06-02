@@ -5,6 +5,7 @@
   "dependencies": {
     "@saltyeyes/react-multi-select": "^0.2.6",
     "fine-uploader": "^5.15.6",
+    "lossless-json": "^1.0.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-modal": "^3.3.2",
