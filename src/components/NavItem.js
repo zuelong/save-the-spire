@@ -29,7 +29,7 @@ class NavItem extends Component {
 
         return(
             <div onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover} onClick={this.props.onClick} style={styles.navitem}>
-                <a style={styles.a}>{this.props.name}</a>
+                <div style={styles.a}>{this.props.name}</div>
             </div>
         )
     }

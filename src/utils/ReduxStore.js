@@ -57,11 +57,14 @@ const reducer = (state, action) => {
             }
         };
     } else if (action.type === types.REMOVE_CARD) {
+        if(state.data.cards.length > action.payload) {
+            state.data.cards.splice(action.payload, 1);
+        }
         return {
             ...state,
             data: {
                 ...state.data,
-                cards: state.data.cards.filter((_, i) => i !== action.payload)
+                cards: state.data.cards
             }
         };
     } else if (action.type === types.SET_POTION) {
@@ -90,12 +93,15 @@ const reducer = (state, action) => {
 
         return newState;
     } else if (action.type === types.REMOVE_RELIC) {
+        if(state.data.relics.length > action.payload) {
+            state.data.relics.splice(action.payload, 1);
+        }
         const relic = state.data.relics[action.payload];
         const newState = {
             ...state,
             data: {
                 ...state.data,
-                relics: state.data.relics.filter((_, i) => i !== action.payload)
+                relics: state.data.relics
             }
         };
 

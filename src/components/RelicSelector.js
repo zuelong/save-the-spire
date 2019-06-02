@@ -60,7 +60,7 @@ class RelicSelector extends Component {
 
         const relicsList = this.sortedRelics
             .filter(relic => relic.toLowerCase().startsWith(this.state.searchTerm.trim()))
-            .map((relic, i) => <Item type="RelicItem" onClick={() => this.addRelic(relic)} name={relic} key={relic}/>)
+            .map((relic) => <Item type="RelicItem" onClick={() => this.addRelic(relic)} name={relic} key={relic}/>)
 
 
         const uniqueCards = this.props.cards.filter((card, i, arr) => arr.findIndex(c => c.id === card.id) === i);
@@ -79,7 +79,7 @@ class RelicSelector extends Component {
                         <div>
                             { uniqueCards.length === 0 ? (
                                 <div>Can't add {this.state.bottled} if your deck is empty</div>
-                            ) : bottleableCards && bottleableCards.length == 0 ? (
+                            ) : bottleableCards && bottleableCards.length === 0 ? (
                                 <div>Can't add {this.state.bottled} if your deck doesn't contain any {bottleableCardType[0] + bottleableCardType.substring(1).toLowerCase()} cards.</div>
                             ) : (
                                 <div>This shouldn't happen.</div>
