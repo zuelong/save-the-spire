@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { actions } from '../utils/ReduxStore'
 import { bindActionCreators } from 'redux';
-const LosslessJSON = require('lossless-json');
+import * as LosslessJSON from 'lossless-json';
 
 class Converter extends Component {
     convertToByteArray = (data) => {

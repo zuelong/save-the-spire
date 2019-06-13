@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-const LosslessJSON = require('lossless-json');
+import * as LosslessJSON from 'lossless-json';
 
 class Advanced extends Component {
 
