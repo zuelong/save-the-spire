@@ -7,7 +7,7 @@ class Search extends Component {
                 width: '100%',
                 fontSize: '18px'
             }
-        }
+        };
         return <input onChange={event => this.props.onSearchTermChanged(event.target.value)} placeholder="Search" style={styles.searchbox}/>
     }
 }
