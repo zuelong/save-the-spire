@@ -4,11 +4,11 @@ class NavItem extends Component {
 
     state = {
         hover: false
-    }
+    };
 
     toggleHover = () => {
         this.setState({hover: !this.state.hover});
-    }
+    };
 
     render() {
         const styles = {

@@ -57,16 +57,18 @@ const reducer = (state, action) => {
             }
         };
     } else if (action.type === types.REMOVE_CARD) {
+        let newCards = state.data.cards.slice();
+        newCards.splice(action.payload, 1);
         return {
             ...state,
             data: {
                 ...state.data,
-                cards: state.data.cards.filter((_, i) => i !== action.payload)
+                cards: newCards
             }
         };
     } else if (action.type === types.SET_POTION) {
-        let newPotions = state.data.potions
-        newPotions[action.payload.index] = action.payload.potion
+        let newPotions = state.data.potions;
+        newPotions[action.payload.index] = action.payload.potion;
         return {
             ...state,
             data: {
@@ -81,7 +83,7 @@ const reducer = (state, action) => {
                 ...state.data,
                 relics: [...state.data.relics, action.payload.relic]
             }
-        }
+        };
 
         if (action.payload.relic.startsWith('Bottled ')) {
             const bottledKey = action.payload.relic.replace(' ', '_').toLowerCase();
@@ -90,12 +92,15 @@ const reducer = (state, action) => {
 
         return newState;
     } else if (action.type === types.REMOVE_RELIC) {
+        const newRelics = state.data.relics.slice();
+        newRelics.splice(action.payload, 1);
+
         const relic = state.data.relics[action.payload];
         const newState = {
             ...state,
             data: {
                 ...state.data,
-                relics: state.data.relics.filter((_, i) => i !== action.payload)
+                relics: newRelics
             }
         };
 
