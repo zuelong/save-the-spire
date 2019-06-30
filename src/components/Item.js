@@ -64,9 +64,25 @@ class Item extends Component {
 
             let key = `potion-${this.props.isPlaceholder ? "placeholder" : this.props.name.split(" ")[0].toLowerCase()}`
 
+            // Without the `process.env.PUBLIC_URL`, the URL will be incorrect in the deployed
+            // GitHub Pages. It will try to use this URL:
+            // https://...github.io/images/potions.png
+
+            // We therefore fix the URL manually here.
+            // It does not work inside the Potions.module.css apparently.
+            // Finally, the correct link on the deployed page will be:
+            // https://...github.io/save-the-spire/images/potions.png
+
+            // With just one image in the hosted page, this manual fix is fine but should there
+            // be more images later on, a better solution should be used!
+
+            let fixedPotionsImage = {
+                backgroundImage: 'url(\'' + process.env.PUBLIC_URL + '/images/potions.png\')'
+            };
             return (
                 <div id={this.props.id} onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover} onClick={this.props.onClick} style={style}>
-                    <div className={typeof styles[key] === "undefined" ? styles.potion_placeholder : styles[key]}></div>
+                    <div style={fixedPotionsImage}
+                         className={typeof styles[key] === "undefined" ? styles.potion_placeholder : styles[key]}/>
                 </div>
 
             )

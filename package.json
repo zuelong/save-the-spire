@@ -6,6 +6,7 @@
   "dependencies": {
     "@saltyeyes/react-multi-select": "^0.2.6",
     "fine-uploader": "^5.15.6",
+    "gh-pages": "^2.0.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-modal": "^3.3.2",
@@ -15,6 +16,8 @@
     "redux": "^3.7.2"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
