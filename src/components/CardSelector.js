@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import cards from "./CardsJSON";
 import Item from "./Item";
 import Search from './Search';
-import { actions } from "../utils/ReduxStore"
-import MultiSelect from "@saltyeyes/react-multi-select"
+import { actions } from "../utils/ReduxStore";
+import MultiSelect from "@saltyeyes/react-multi-select";
+import fuzzysort from 'fuzzysort';
 
 const filterOptions = {
     rarity: {
@@ -39,7 +40,7 @@ const filterOptions = {
         STATUS: "Status",
         CURSE:  "Curse"
     }
-}
+};
 
 class CardSelector extends Component {
 
@@ -47,7 +48,7 @@ class CardSelector extends Component {
         upgraded: false,
         searchTerm: '',
         filters: {}
-    }
+    };
 
     sortedCards = Object.keys(cards).sort();
 
@@ -70,15 +71,15 @@ class CardSelector extends Component {
         let filters = {
             ...this.state.filters,
             [property]: options
-        }
+        };
         this.setState({filters: filters}) 
     }
 
     filterCard(cardName, filters=null) {
-        filters = filters || this.state.filters
-        let card = cards[cardName]
+        filters = filters || this.state.filters;
+        let card = cards[cardName];
         for (let [property, options] of Object.entries(filters)) {
-            options = options.map((option) => {return option.trim()})
+            options = options.map((option) => {return option.trim()});
             if (options.length > 0 && !options.includes(String(card[property]))) {
                 return false
             }
@@ -113,10 +114,16 @@ class CardSelector extends Component {
             }
         };
 
-        const cardsList = this.sortedCards
-            .filter(card => card.toLowerCase().startsWith(this.state.searchTerm.trim()))
+        let cardsList;
+        if (this.state.searchTerm) {
+            cardsList = fuzzysort.go(this.state.searchTerm, this.sortedCards)
+                .map(card => card.target)
+        } else {
+            cardsList = this.sortedCards
+        }
+        cardsList = cardsList
             .filter(card => this.filterCard(card))
-            .map((card, i) => <Item type="CardItem" onClick={() => this.addCard(card)} name={card + (this.state.upgraded ? '+' : '')} key={card}/>)
+            .map((card) => <Item type="CardItem" onClick={() => this.addCard(card)} name={card + (this.state.upgraded ? '+' : '')} key={card}/>);
 
         return (
             <div>
@@ -149,7 +156,7 @@ class CardFilter extends Component {
         } else if (selected.length === 1) {
             for (let option of options) {
                 if (option.value === selected[0]) {
-                    output = option.label
+                    output = option.label;
                     break;
                 }
             }
@@ -166,7 +173,7 @@ class CardFilter extends Component {
     }
 
     handleSelectedChanged(selected) {
-        this.setState({selected})
+        this.setState({selected});
         this.props.onFiltersChanged(this.props.name, selected);
     }
 
