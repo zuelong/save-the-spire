@@ -2,7 +2,7 @@
   "name": "crack",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://gira-x.github.io/save-the-spire/",
+  "homepage": "https://gira-x.github.io/save-the-spire",
   "dependencies": {
     "@saltyeyes/react-multi-select": "^0.2.6",
     "fine-uploader": "^5.15.6",
