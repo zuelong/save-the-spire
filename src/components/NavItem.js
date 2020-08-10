@@ -35,4 +35,4 @@ class NavItem extends Component {
     }
 }
 
-export default NavItem
+export default NavItem;

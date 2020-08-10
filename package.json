@@ -1,20 +1,24 @@
 {
+  "homepage": "http://girtonman.github.io/save-the-spire",
   "name": "crack",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@saltyeyes/react-multi-select": "^0.2.6",
     "fine-uploader": "^5.15.6",
+    "gh-pages": "^3.1.0",
     "lossless-json": "^1.0.3",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "react-dom": "^16.13.1",
     "react-modal": "^3.3.2",
     "react-redux": "^5.0.7",
     "react-redux-connect": "^0.1.0",
-    "react-scripts": "2.0.0-next.b2fd8db8",
+    "react-scripts": "^3.4.1",
     "redux": "^3.7.2"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

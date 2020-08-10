@@ -1530,4 +1530,4 @@ let cards = `{
 
 cards = JSON.parse(cards);
 
-export default cards
+export default cards;
