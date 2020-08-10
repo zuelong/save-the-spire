@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import * as LosslessJSON from 'lossless-json';
 
 class Advanced extends Component {
 
@@ -34,7 +35,7 @@ class Advanced extends Component {
         try {
             const encrypted = this.state.base64;
             let decrypted = this.xorWithKey(atob(encrypted), "key");
-            this.setState({json: JSON.stringify(JSON.parse(decrypted), null, 2)});
+            this.setState({json: LosslessJSON.stringify(LosslessJSON.parse(decrypted), null, 2)});
         }
         catch(e) {
             alert('Invalid Base64')
@@ -63,7 +64,7 @@ class Advanced extends Component {
     }
 
     receiveData(data) {
-        const json = JSON.stringify(data, null, 2);
+        const json = LosslessJSON.stringify(data, null, 2);
         const base64 = btoa(this.xorWithKey(json, "key"))
         this.setState({json, base64});
     }

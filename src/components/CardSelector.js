@@ -116,7 +116,7 @@ class CardSelector extends Component {
         const cardsList = this.sortedCards
             .filter(card => card.toLowerCase().startsWith(this.state.searchTerm.trim()))
             .filter(card => this.filterCard(card))
-            .map((card, i) => <Item type="CardItem" onClick={() => this.addCard(card)} name={card + (this.state.upgraded ? '+' : '')} key={card}/>)
+            .map((card) => <Item type="CardItem" onClick={() => this.addCard(card)} name={card + (this.state.upgraded ? '+' : '')} key={card}/>)
 
         return (
             <div>
@@ -190,4 +190,4 @@ const mapDispatchToProps = (dispatch) => ({
     actions: bindActionCreators(actions, dispatch)
 });
 
-export default connect(null, mapDispatchToProps)(CardSelector)
+export default connect(null, mapDispatchToProps)(CardSelector);
