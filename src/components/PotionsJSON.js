@@ -60,4 +60,4 @@ let potions = `{
 
 potions = JSON.parse(potions);
 
-export default potions
+export default potions;

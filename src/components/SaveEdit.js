@@ -28,4 +28,4 @@ const mapStateToProps = (state) => ({
     savePage: state.savePage 
 });
 
-export default connect(mapStateToProps)(SaveEdit)
+export default connect(mapStateToProps)(SaveEdit);

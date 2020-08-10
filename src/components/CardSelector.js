@@ -190,4 +190,4 @@ const mapDispatchToProps = (dispatch) => ({
     actions: bindActionCreators(actions, dispatch)
 });
 
-export default connect(null, mapDispatchToProps)(CardSelector)
+export default connect(null, mapDispatchToProps)(CardSelector);

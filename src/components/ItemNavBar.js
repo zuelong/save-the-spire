@@ -45,4 +45,4 @@ const mapDispatchToProps = (dispatch) => ({
     actions: bindActionCreators(actions, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ItemNavBar)
+export default connect(mapStateToProps, mapDispatchToProps)(ItemNavBar);
