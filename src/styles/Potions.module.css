@@ -1,5 +1,7 @@
+/*
+See render() in Item.js on why the potions background-image here will cause trouble in GitHub pages.
+ */
 .potion {
-    background-image: url(/images/potions.png);
     background-repeat: no-repeat;
     display: block;
 }

@@ -12,9 +12,9 @@ class PotionList extends Component {
     state = {
         showModal: false,
         modalIndex: 0
-    }
+    };
 
-    sortedPotions = ["Potion Slot", ...Object.keys(potions).filter((potion) => potion !== "Potion Slot").sort()]
+    sortedPotions = ["Potion Slot", ...Object.keys(potions).filter((potion) => potion !== "Potion Slot").sort()];
 
     render() {
 
